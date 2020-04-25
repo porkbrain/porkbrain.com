@@ -39,6 +39,7 @@ defmodule BausanoWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
+      import BausanoWeb.ViewHelpers
       import BausanoWeb.ErrorHelpers
       import BausanoWeb.Gettext
       alias BausanoWeb.Router.Helpers, as: Routes

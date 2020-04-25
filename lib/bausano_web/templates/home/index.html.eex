@@ -16,7 +16,7 @@
                 </h3>
             <% end %>
             <span class="note">
-                <%= raw(post.description) %>
+                <%= raw md_to_html post.description %>
             </span>
         </article>
     <% end %>
