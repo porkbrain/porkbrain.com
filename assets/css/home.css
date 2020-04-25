@@ -1,0 +1,32 @@
+/**
+ * The home page article list is vanilla. We just need to change font sizes in
+ * certain cases such as article notes or when the article is supposed to be
+ * highlighted.
+ */
+
+.articles .article {
+  margin-top: 24px;
+}
+
+.articles .article h3 {
+  display: inline;
+  font-size: 1rem;
+}
+
+.articles .article time {
+  color: grey;
+  display: block;
+  font-size: 0.75rem;
+  padding-right: 8px;
+  width: 75px;
+}
+
+.articles .article .note {
+  font-size: 0.75rem;
+}
+
+@media only screen and (min-width: 1024px) {
+  .articles .article time {
+    display: inline-block;
+  }
+}

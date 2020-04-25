@@ -1,9 +1,26 @@
-Hello there
-
-<%= for post <- @posts do %>
-    <%= post.heading %>
-    <br>
-    <%= post.description %>
-    <br>
-    <span><%= post.url %></span>
-<% end %>
+<section class="articles">
+    <%= for post <- @posts do %>
+        <article class="article">
+            <time datetime="2020-01-30">Jan 30th 2020</time>
+            <%= if post.url do %>
+                <a class="link" href="<%= post.url %>">
+                    <h3 class="heading">
+                        <%= post.heading %>
+                    </h3>
+                </a>
+            <% else %>
+                <h3 class="heading">
+                    <%= post.heading %>
+                </h3>
+            <% end %>
+            <span class="note">
+                <%=
+                    case Earmark.as_html(post.description) do
+                        {:ok, parsed_md, _} -> parsed_md
+                        _ -> post.description
+                    end
+                %>
+            </span>
+        </article>
+    <% end %>
+</section>

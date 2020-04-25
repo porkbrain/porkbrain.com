@@ -11,6 +11,11 @@ defmodule BausanoWeb.HomeController do
       Enum.to_list(Repo.stream(from p in Post))
     end)
 
+    # posts = Enum.map(posts, fn(p) ->
+
+    # end)
+    # Earmark.as_html
+
     render(conn, "index.html", posts: posts)
   end
 end

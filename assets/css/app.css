@@ -1,3 +1,17 @@
-/* This file is for your main application css. */
+/**
+ * Imports layout styles.
+ */
 
-@import "./phoenix.css";
+@import 'layout.css';
+
+/**
+ * Imports common font styles.
+ */
+
+@import 'typography.css';
+
+/**
+ * Imports index page styles.
+ */
+
+@import 'home.css';
