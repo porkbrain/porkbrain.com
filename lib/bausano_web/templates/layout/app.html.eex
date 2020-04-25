@@ -34,7 +34,6 @@
         <footer class="footer">
             <p class="signature">
                 Curated by
-                <%# TODO: Change github link to var. %>
                 <a target="_blank" href="https://github.com/bausano">
                     Michael Bausano
                 </a>

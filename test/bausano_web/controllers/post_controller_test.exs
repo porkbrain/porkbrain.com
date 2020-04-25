@@ -1,10 +1,6 @@
 defmodule BausanoWeb.PostControllerTest do
   use BausanoWeb.ConnCase
 
-  # TODO: Test invalid json payload.
-
-  # TODO: Test MD description.
-
   test "POST /api/posts", %{conn: conn} do
     conn = post(conn, "/api/posts", %{
       "description" => "(example.com)",

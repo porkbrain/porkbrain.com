@@ -23,4 +23,14 @@ defmodule BausanoWeb.HomeControllerTest do
     assert text =~ description
     assert text =~ url
   end
+
+  test "GET / should render post description as markdown", %{conn: conn} do
+    conn = post(conn, "/api/posts", %{
+      "description" => "#### This is MD",
+      "heading" => "my test heading",
+    })
+    assert response(conn, :created)
+
+    assert html_response(get(conn, "/"), 200) =~ "<h4>This is MD</h4>"
+  end
 end
