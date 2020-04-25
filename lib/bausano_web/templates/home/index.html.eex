@@ -1,0 +1,9 @@
+Hello there
+
+<%= for post <- @posts do %>
+    <%= post.heading %>
+    <br>
+    <%= post.description %>
+    <br>
+    <span><%= post.url %></span>
+<% end %>

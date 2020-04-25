@@ -1,0 +1,67 @@
+openapi: 3.0.0
+info:
+  description: Personal website API docs
+  version: "0.1.0"
+  title: bausano
+
+paths:
+    /api/posts:
+        description: >-
+            APIs for working with generic posts. Posts are displayed at
+            homepage. Other logic might use these posts to include them in
+            whatever it is doing. Post is kind of like quote or reference.
+            The purpose is to have something that holds a heading and some short
+            description, have optionally a link associated with it, and
+            reusable.
+
+            Since it's displayed at homepage, there will be an overview of
+            what's being posted to the website.
+        post:
+            summary: Creates a new post
+            operationId: createPost
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/NewPost'
+            responses:
+                '201':
+                    description: Successfully created
+                '422':
+                    description: Some fields are missing
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                required:
+                                    - message
+                                properties:
+                                    message:
+                                        type: string
+                '403':
+                    description: Wrong token
+
+
+components:
+  securitySchemes:
+    BearerAuth:
+        type: http
+        scheme: bearer
+  schemas:
+    NewPost:
+        type: object
+        required:
+            - heading
+            - description
+        properties:
+            heading:
+                type: string
+                description: >-
+                    Few words that summarize the post. If the post is a
+                    reference to a blog post, it can be the title of the blog
+                    post.
+            description:
+                type: string
+            url:
+                type: string

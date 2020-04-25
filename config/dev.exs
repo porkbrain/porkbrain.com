@@ -3,9 +3,9 @@ use Mix.Config
 # Configure your database
 config :bausano, Bausano.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "",
   database: "bausano_dev",
-  hostname: "localhost",
+  hostname: "bausano-postgres",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 

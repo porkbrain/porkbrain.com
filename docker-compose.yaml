@@ -1,0 +1,26 @@
+version: '3.7'
+
+volumes:
+    bausano_postgres:
+
+services:
+    bausano:
+        container_name: bausano
+        depends_on:
+            - bausano-postgres
+        build: .
+        ports:
+            - "4000:4000"
+        environment:
+            - DB_HOST=bausano-postgres
+        command:
+            - ./run.sh
+        volumes:
+            - type: bind
+              source: .
+              target: /app
+    bausano-postgres:
+        container_name: bausano-postgres
+        image: postgres
+        volumes:
+            - bausano_postgres:/var/lib/postgresql/data

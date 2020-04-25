@@ -3,9 +3,9 @@ use Mix.Config
 # Configure your database
 config :bausano, Bausano.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "",
   database: "bausano_test",
-  hostname: "localhost",
+  hostname: "bausano-postgres",
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,

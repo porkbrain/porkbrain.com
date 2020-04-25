@@ -16,11 +16,12 @@ defmodule BausanoWeb.Router do
   scope "/", BausanoWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", HomeController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", BausanoWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", BausanoWeb do
+    pipe_through :api
+
+    post "/posts", PostController, :create
+  end
 end
