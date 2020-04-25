@@ -25,6 +25,14 @@
   font-size: 0.75rem;
 }
 
+/*
+ * Since we're using markdown for descriptions, we remove the ability of the
+ * first paragraph to make a new line.
+ */
+.articles .article .note p:first-child {
+  display: inline;
+}
+
 @media only screen and (min-width: 1024px) {
   .articles .article time {
     display: inline-block;

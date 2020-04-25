@@ -19,6 +19,10 @@ You can list all databases with `\l`. Then connect to a database with
 `\c {db_name}`. To list database tables use `\dt`. `\d+ {table_name}` prints the
 structure of a table.
 
+## Markdown
+Markdown [engine][md-engine] is added, therefore pages can be written in MD if
+they have suffix `html.md`.
+
 ## Useful references
 - [Building a JSON API with Phoenix 1.3 and Elixir][building-json-api]
 - [Elixir JSON Schema validator][validate-json-schema]
@@ -29,3 +33,4 @@ structure of a table.
 [ecto-types]: https://hexdocs.pm/ecto/Ecto.Type.html#types
 [building-json-api]: https://dev.to/lobo_tuerto/building-a-json-api-with-phoenix-13-and-elixir-ooo
 [validate-json-schema]: https://github.com/jonasschmidt/ex_json_schema
+[md-engine]: https://github.com/boydm/phoenix_markdown

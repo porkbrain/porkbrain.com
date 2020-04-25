@@ -7,14 +7,21 @@ defmodule BausanoWeb.HomeController do
 
   # Views a coach profile.
   def index(conn, _) do
+    # TODO: Test what happens in production when this crashes.
     {:ok, posts} = Repo.transaction(fn() ->
       Enum.to_list(Repo.stream(from p in Post))
     end)
 
-    # posts = Enum.map(posts, fn(p) ->
-
-    # end)
-    # Earmark.as_html
+    # Parses markdown into html for post descriptions.
+    # TODO: Move this into a function and to the template.
+    posts = Enum.map(posts, fn(post) ->
+      %{post | description:
+        case Earmark.as_html(post.description) do
+          {:ok, parsed_md, _} -> parsed_md
+          _ -> post.description
+        end
+      }
+    end)
 
     render(conn, "index.html", posts: posts)
   end

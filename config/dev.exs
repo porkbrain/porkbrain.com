@@ -61,7 +61,7 @@ config :bausano, BausanoWeb.Endpoint,
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/bausano_web/(live|views)/.*(ex)$",
-      ~r"lib/bausano_web/templates/.*(eex)$"
+      ~r"lib/bausano_web/templates/.*(eex|md)$"
     ]
   ]
 
