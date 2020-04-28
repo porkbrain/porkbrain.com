@@ -7,15 +7,15 @@
 # General application configuration
 use Mix.Config
 
-config :bausano,
-  ecto_repos: [Bausano.Repo]
+config :porkbrain,
+  ecto_repos: [Porkbrain.Repo]
 
 # Configures the endpoint
-config :bausano, BausanoWeb.Endpoint,
+config :porkbrain, PorkbrainWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "i77hNUkBQXyQFqynT3ICPC40W5Eo+79XtPq1mxkyIkr2RP7VYq1LDSPdTWMOGVFb",
-  render_errors: [view: BausanoWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Bausano.PubSub, adapter: Phoenix.PubSub.PG2],
+  render_errors: [view: PorkbrainWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: Porkbrain.PubSub, adapter: Phoenix.PubSub.PG2],
   live_view: [signing_salt: "loqmqwj7"]
 
 # Configures Elixir's Logger

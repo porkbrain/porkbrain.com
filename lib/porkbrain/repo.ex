@@ -1,5 +1,5 @@
-defmodule Bausano.Repo do
+defmodule Porkbrain.Repo do
   use Ecto.Repo,
-    otp_app: :bausano,
+    otp_app: :porkbrain,
     adapter: Ecto.Adapters.Postgres
 end

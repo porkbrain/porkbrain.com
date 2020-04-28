@@ -8,7 +8,7 @@
 # Since it's displayed at homepage, there will be an overview of
 # what's being posted to the website.
 
-defmodule Bausano.Post do
+defmodule Porkbrain.Post do
   use Ecto.Schema
   import Ecto.Changeset
 

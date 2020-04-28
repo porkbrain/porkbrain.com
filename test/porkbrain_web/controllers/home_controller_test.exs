@@ -1,5 +1,5 @@
-defmodule BausanoWeb.HomeControllerTest do
-  use BausanoWeb.ConnCase
+defmodule PorkbrainWeb.HomeControllerTest do
+  use PorkbrainWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")

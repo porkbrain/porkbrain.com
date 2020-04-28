@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: Personal website API docs
   version: "0.1.0"
-  title: bausano
+  title: porkbrain
 
 paths:
     /api/posts:

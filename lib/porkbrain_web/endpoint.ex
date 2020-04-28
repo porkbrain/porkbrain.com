@@ -1,16 +1,16 @@
-defmodule BausanoWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :bausano
+defmodule PorkbrainWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :porkbrain
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_bausano_key",
+    key: "_porkbrain_key",
     signing_salt: "PWO4PoIf"
   ]
 
-  socket "/socket", BausanoWeb.UserSocket,
+  socket "/socket", PorkbrainWeb.UserSocket,
     websocket: true,
     longpoll: false
 
@@ -20,7 +20,7 @@ defmodule BausanoWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :bausano,
+    from: :porkbrain,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
@@ -43,5 +43,5 @@ defmodule BausanoWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug BausanoWeb.Router
+  plug PorkbrainWeb.Router
 end

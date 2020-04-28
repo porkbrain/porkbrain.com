@@ -1,5 +1,5 @@
-defmodule BausanoWeb.Router do
-  use BausanoWeb, :router
+defmodule PorkbrainWeb.Router do
+  use PorkbrainWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,13 +13,13 @@ defmodule BausanoWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", BausanoWeb do
+  scope "/", PorkbrainWeb do
     pipe_through :browser
 
     get "/", HomeController, :index
   end
 
-  scope "/api", BausanoWeb do
+  scope "/api", PorkbrainWeb do
     pipe_through :api
 
     post "/posts", PostController, :create

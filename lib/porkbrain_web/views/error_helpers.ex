@@ -1,4 +1,4 @@
-defmodule BausanoWeb.ErrorHelpers do
+defmodule PorkbrainWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -39,9 +39,9 @@ defmodule BausanoWeb.ErrorHelpers do
     # should be written to the errors.po file. The :count option is
     # set by Ecto and indicates we should also apply plural rules.
     if count = opts[:count] do
-      Gettext.dngettext(BausanoWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(PorkbrainWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(BausanoWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(PorkbrainWeb.Gettext, "errors", msg, opts)
     end
   end
 end

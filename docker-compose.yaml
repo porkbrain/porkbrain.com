@@ -1,26 +1,26 @@
 version: '3.7'
 
 volumes:
-    bausano_postgres:
+    porkbrain_postgres:
 
 services:
-    bausano:
-        container_name: bausano
+    porkbrain:
+        container_name: porkbrain
         depends_on:
-            - bausano-postgres
+            - porkbrain-postgres
         build: .
         ports:
             - "4000:4000"
         environment:
-            - DB_HOST=bausano-postgres
+            - DB_HOST=porkbrain-postgres
         command:
             - ./run.sh
         volumes:
             - type: bind
               source: .
               target: /app
-    bausano-postgres:
-        container_name: bausano-postgres
+    porkbrain-postgres:
+        container_name: porkbrain-postgres
         image: postgres
         volumes:
-            - bausano_postgres:/var/lib/postgresql/data
+            - porkbrain_postgres:/var/lib/postgresql/data

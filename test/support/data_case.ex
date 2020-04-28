@@ -1,4 +1,4 @@
-defmodule Bausano.DataCase do
+defmodule Porkbrain.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule Bausano.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use Bausano.DataCase, async: true`, although
+  by setting `use Porkbrain.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -18,20 +18,20 @@ defmodule Bausano.DataCase do
 
   using do
     quote do
-      alias Bausano.Repo
+      alias Porkbrain.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Bausano.DataCase
+      import Porkbrain.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Bausano.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Porkbrain.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Bausano.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Porkbrain.Repo, {:shared, self()})
     end
 
     :ok

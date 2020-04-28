@@ -1,6 +1,6 @@
-defmodule Bausano do
+defmodule Porkbrain do
   @moduledoc """
-  Bausano keeps the contexts that define your domain
+  Porkbrain keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

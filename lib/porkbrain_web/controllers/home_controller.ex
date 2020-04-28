@@ -1,7 +1,7 @@
-defmodule BausanoWeb.HomeController do
-  use BausanoWeb, :controller
-  alias Bausano.Post
-  alias Bausano.Repo
+defmodule PorkbrainWeb.HomeController do
+  use PorkbrainWeb, :controller
+  alias Porkbrain.Post
+  alias Porkbrain.Repo
   # Imports the "last" function.
   import Ecto.Query
 

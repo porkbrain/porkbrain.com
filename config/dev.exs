@@ -1,11 +1,11 @@
 use Mix.Config
 
 # Configure your database
-config :bausano, Bausano.Repo,
+config :porkbrain, Porkbrain.Repo,
   username: "postgres",
   password: "",
-  database: "bausano_dev",
-  hostname: "bausano-postgres",
+  database: "porkbrain_dev",
+  hostname: "porkbrain-postgres",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -15,7 +15,7 @@ config :bausano, Bausano.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :bausano, BausanoWeb.Endpoint,
+config :porkbrain, PorkbrainWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -55,13 +55,13 @@ config :bausano, BausanoWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :bausano, BausanoWeb.Endpoint,
+config :porkbrain, PorkbrainWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/bausano_web/(live|views)/.*(ex)$",
-      ~r"lib/bausano_web/templates/.*(eex|md)$"
+      ~r"lib/porkbrain_web/(live|views)/.*(ex)$",
+      ~r"lib/porkbrain_web/templates/.*(eex|md)$"
     ]
   ]
 

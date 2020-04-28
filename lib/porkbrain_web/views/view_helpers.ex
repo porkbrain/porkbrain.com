@@ -1,4 +1,4 @@
-defmodule BausanoWeb.ViewHelpers do
+defmodule PorkbrainWeb.ViewHelpers do
   @moduledoc """
   Convenience functions to be used in templates.
   """

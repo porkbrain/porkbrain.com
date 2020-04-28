@@ -1,12 +1,12 @@
-defmodule BausanoWeb do
+defmodule PorkbrainWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use BausanoWeb, :controller
-      use BausanoWeb, :view
+      use PorkbrainWeb, :controller
+      use PorkbrainWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,19 +19,19 @@ defmodule BausanoWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: BausanoWeb
+      use Phoenix.Controller, namespace: PorkbrainWeb
 
       import Plug.Conn
-      import BausanoWeb.Gettext
-      alias BausanoWeb.Router.Helpers, as: Routes
+      import PorkbrainWeb.Gettext
+      alias PorkbrainWeb.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/bausano_web/templates",
-        namespace: BausanoWeb
+        root: "lib/porkbrain_web/templates",
+        namespace: PorkbrainWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
@@ -39,10 +39,10 @@ defmodule BausanoWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import BausanoWeb.ViewHelpers
-      import BausanoWeb.ErrorHelpers
-      import BausanoWeb.Gettext
-      alias BausanoWeb.Router.Helpers, as: Routes
+      import PorkbrainWeb.ViewHelpers
+      import PorkbrainWeb.ErrorHelpers
+      import PorkbrainWeb.Gettext
+      alias PorkbrainWeb.Router.Helpers, as: Routes
     end
   end
 
@@ -57,7 +57,7 @@ defmodule BausanoWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import BausanoWeb.Gettext
+      import PorkbrainWeb.Gettext
     end
   end
 

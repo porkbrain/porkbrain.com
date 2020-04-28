@@ -1,7 +1,7 @@
-defmodule BausanoWeb.PostController do
-  use BausanoWeb, :controller
-  alias Bausano.Post
-  alias Bausano.Repo
+defmodule PorkbrainWeb.PostController do
+  use PorkbrainWeb, :controller
+  alias Porkbrain.Post
+  alias Porkbrain.Repo
 
   @create_post_schema %{
     "type" => "object",

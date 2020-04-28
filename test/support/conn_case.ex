@@ -1,4 +1,4 @@
-defmodule BausanoWeb.ConnCase do
+defmodule PorkbrainWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule BausanoWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use BausanoWeb.ConnCase, async: true`, although
+  by setting `use PorkbrainWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -21,18 +21,18 @@ defmodule BausanoWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      alias BausanoWeb.Router.Helpers, as: Routes
+      alias PorkbrainWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint BausanoWeb.Endpoint
+      @endpoint PorkbrainWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Bausano.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Porkbrain.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Bausano.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Porkbrain.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

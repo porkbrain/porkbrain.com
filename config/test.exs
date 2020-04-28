@@ -1,16 +1,16 @@
 use Mix.Config
 
 # Configure your database
-config :bausano, Bausano.Repo,
+config :porkbrain, Porkbrain.Repo,
   username: "postgres",
   password: "",
-  database: "bausano_test",
-  hostname: "bausano-postgres",
+  database: "porkbrain_test",
+  hostname: "porkbrain-postgres",
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :bausano, BausanoWeb.Endpoint,
+config :porkbrain, PorkbrainWeb.Endpoint,
   http: [port: 4002],
   server: false
 

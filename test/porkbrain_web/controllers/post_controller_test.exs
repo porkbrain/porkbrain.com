@@ -1,5 +1,5 @@
-defmodule BausanoWeb.PostControllerTest do
-  use BausanoWeb.ConnCase
+defmodule PorkbrainWeb.PostControllerTest do
+  use PorkbrainWeb.ConnCase
 
   test "POST /api/posts", %{conn: conn} do
     conn = post(conn, "/api/posts", %{

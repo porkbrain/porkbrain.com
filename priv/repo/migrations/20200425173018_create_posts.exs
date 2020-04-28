@@ -1,4 +1,4 @@
-defmodule Bausano.Repo.Migrations.CreatePosts do
+defmodule Porkbrain.Repo.Migrations.CreatePosts do
   use Ecto.Migration
 
   def change do

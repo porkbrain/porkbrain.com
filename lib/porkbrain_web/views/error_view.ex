@@ -1,5 +1,5 @@
-defmodule BausanoWeb.ErrorView do
-  use BausanoWeb, :view
+defmodule PorkbrainWeb.ErrorView do
+  use PorkbrainWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

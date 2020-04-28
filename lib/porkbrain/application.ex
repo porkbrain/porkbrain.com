@@ -1,4 +1,4 @@
-defmodule Bausano.Application do
+defmodule Porkbrain.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -9,23 +9,23 @@ defmodule Bausano.Application do
     # List all child processes to be supervised
     children = [
       # Start the Ecto repository
-      Bausano.Repo,
+      Porkbrain.Repo,
       # Start the endpoint when the application starts
-      BausanoWeb.Endpoint
-      # Starts a worker by calling: Bausano.Worker.start_link(arg)
-      # {Bausano.Worker, arg},
+      PorkbrainWeb.Endpoint
+      # Starts a worker by calling: Porkbrain.Worker.start_link(arg)
+      # {Porkbrain.Worker, arg},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Bausano.Supervisor]
+    opts = [strategy: :one_for_one, name: Porkbrain.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    BausanoWeb.Endpoint.config_change(changed, removed)
+    PorkbrainWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

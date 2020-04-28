@@ -1,5 +1,5 @@
-defmodule BausanoWeb.LayoutViewTest do
-  use BausanoWeb.ConnCase, async: true
+defmodule PorkbrainWeb.LayoutViewTest do
+  use PorkbrainWeb.ConnCase, async: true
 
   # When testing helpers, you may want to import Phoenix.HTML and
   # use functions such as safe_to_string() to convert the helper

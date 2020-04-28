@@ -1,4 +1,4 @@
-defmodule BausanoWeb.ChannelCase do
+defmodule PorkbrainWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -11,7 +11,7 @@ defmodule BausanoWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use BausanoWeb.ChannelCase, async: true`, although
+  by setting `use PorkbrainWeb.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -23,15 +23,15 @@ defmodule BausanoWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint BausanoWeb.Endpoint
+      @endpoint PorkbrainWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Bausano.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Porkbrain.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Bausano.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Porkbrain.Repo, {:shared, self()})
     end
 
     :ok

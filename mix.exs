@@ -1,9 +1,9 @@
-defmodule Bausano.MixProject do
+defmodule Porkbrain.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :bausano,
+      app: :porkbrain,
       version: "0.1.0",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule Bausano.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Bausano.Application, []},
+      mod: {Porkbrain.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
