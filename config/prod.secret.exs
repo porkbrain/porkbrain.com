@@ -28,7 +28,8 @@ config :porkbrain, PorkbrainWeb.Endpoint,
     port: String.to_integer(System.get_env("PORT") || "4000"),
     transport_options: [socket_opts: [:inet6]]
   ],
-  secret_key_base: secret_key_base
+  secret_key_base: secret_key_base,
+  server: true
 
 api_token =
   System.get_env("API_TOKEN") ||
@@ -39,13 +40,3 @@ api_token =
 
 config :porkbrain,
   api_token: api_token
-
-# ## Using releases (Elixir v1.9+)
-#
-# If you are doing OTP releases, you need to instruct Phoenix
-# to start each relevant endpoint:
-#
-#     config :porkbrain, PorkbrainWeb.Endpoint, server: true
-#
-# Then you can assemble a release by calling `mix release`.
-# See `mix help release` for more information.
