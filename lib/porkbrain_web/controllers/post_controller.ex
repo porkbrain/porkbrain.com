@@ -3,6 +3,9 @@ defmodule PorkbrainWeb.PostController do
   alias Porkbrain.Post
   alias Porkbrain.Repo
 
+  # To create a new post, one needs an API key.
+  plug PorkbrainWeb.Plugs.Authorization when action in [:create]
+
   @create_post_schema %{
     "type" => "object",
     "required" => ["heading", "description"],

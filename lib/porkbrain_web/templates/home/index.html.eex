@@ -1,4 +1,10 @@
 <header class="header">
+    <img
+        class="logo"
+        alt="porkbrain logo; image of a pig with exposed brain being looked at through a magnifying glass by a person"
+        src="<%= Routes.static_path(@conn, "/images/porkbrain_1600x1600.jpeg") %>"
+    >
+
     <h1 class="title">
     &popf;&oopf;&ropf;&kopf;&bopf;&ropf;&aopf;&iopf;&nopf;
     </h1>

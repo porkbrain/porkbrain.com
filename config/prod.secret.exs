@@ -7,7 +7,7 @@ use Mix.Config
 database_url =
   System.get_env("DATABASE_URL") ||
     raise """
-    environment variable DATABASE_URL is missing.
+    Environment variable DATABASE_URL is missing.
     For example: ecto://USER:PASS@HOST/DATABASE
     """
 
@@ -19,7 +19,7 @@ config :porkbrain, Porkbrain.Repo,
 secret_key_base =
   System.get_env("SECRET_KEY_BASE") ||
     raise """
-    environment variable SECRET_KEY_BASE is missing.
+    Environment variable SECRET_KEY_BASE is missing.
     You can generate one by calling: mix phx.gen.secret
     """
 
@@ -29,6 +29,16 @@ config :porkbrain, PorkbrainWeb.Endpoint,
     transport_options: [socket_opts: [:inet6]]
   ],
   secret_key_base: secret_key_base
+
+api_token =
+  System.get_env("API_TOKEN") ||
+    raise """
+    Environment variable API_TOKEN is missing. It is needed to authorize API
+    updates from other services.
+    """
+
+config :porkbrain,
+  api_token: api_token
 
 # ## Using releases (Elixir v1.9+)
 #

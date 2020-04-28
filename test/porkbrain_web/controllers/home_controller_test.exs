@@ -11,7 +11,9 @@ defmodule PorkbrainWeb.HomeControllerTest do
     description = "(example.com)"
     url = "https://example.com"
 
-    conn = post(conn, "/api/posts", %{
+    conn = conn
+    |> put_req_header("authorization", "Bearer secret")
+    |> post("/api/posts", %{
       "description" => description,
       "heading" => heading,
       "url" => url,
@@ -25,7 +27,9 @@ defmodule PorkbrainWeb.HomeControllerTest do
   end
 
   test "GET / should render post description as markdown", %{conn: conn} do
-    conn = post(conn, "/api/posts", %{
+    conn = conn
+    |> put_req_header("authorization", "Bearer secret")
+    |> post("/api/posts", %{
       "description" => "#### This is MD",
       "heading" => "my test heading",
     })
