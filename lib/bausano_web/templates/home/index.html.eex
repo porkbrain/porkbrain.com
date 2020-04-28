@@ -1,8 +1,29 @@
+<header class="header">
+    <h1 class="title">
+    &popf;&oopf;&ropf;&kopf;&bopf;&ropf;&aopf;&iopf;&nopf;
+    </h1>
+    <h2 class="subtitle">We are what We read</h2>
+    <p>
+        A vanilla flavoured list which curates mostly technology and mathematics related content often found on
+        <a href="https://news.ycombinator.com" target="hn">Hacker News</a>.
+        One can find here quotes, comments, articles, videos and opinions.
+    </p>
+</header>
+
 <section class="articles">
     <%= for post <- @posts do %>
         <article class="article">
             <time datetime="<%= Timex.format!(post.inserted_at, "{ISOdate} {ISOtime}") %>">
-                <%= Timex.format!(post.inserted_at, "{Mshort} {D} {YYYY}") %>
+                <%# Gets a suffix for day ordinal for numbers up to 31.  %>
+                <%=
+                    suffix = case post.inserted_at.day do
+                        d when d in [1, 21, 31] -> "st"
+                        d when d in [2, 22] -> "nd"
+                        d when d in [3, 23] -> "rd"
+                        _ -> "th"
+                    end
+                    Timex.format!(post.inserted_at, "{Mshort} {D}" <> suffix <> " {YYYY}")
+                %>
             </time>
             <%= if post.url do %>
                 <a class="link" href="<%= post.url %>">
@@ -21,3 +42,12 @@
         </article>
     <% end %>
 </section>
+
+<footer class="footer">
+    <p class="signature">
+        Curated by
+        <a target="_blank" href="https://github.com/bausano">
+            Michael Bausano
+        </a>
+    </p>
+</footer>
