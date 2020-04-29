@@ -17,6 +17,7 @@ defmodule PorkbrainWeb.Router do
     pipe_through :browser
 
     get "/", HomeController, :index
+    get "/tribute", HomeController, :tribute
   end
 
   scope "/api", PorkbrainWeb do
