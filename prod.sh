@@ -1,5 +1,6 @@
 #!/bin/sh
 # Builds the application for production.
+# This process is still very much WIP.
 
 set -e
 
@@ -29,16 +30,23 @@ if [ -z "${instance_name}" ]; then
 fi
 
 if [ ! -f "${pem_file_path}" ]; then
-    echo "Path to the .pem file must be provided with --pem ."
+    echo "Path to the .pem file must be provided with --pem."
+    exit 1
+fi
+
+if [ -z "${API_TOKEN}" ]; then
+    echo "The API_TOKEN environment variable must be specified."
+    exit 1
+fi
+
+if [ -z "${DB_PWD}" ]; then
+    echo "The DB_PWD environment variable must be specified."
     exit 1
 fi
 
 # Generates 256 random bytes.
 export SECRET_KEY_BASE=$(head -c 500 /dev/urandom | tr -dc 'a-zA-Z0-9~!@#$%^&*_-' | fold -w 256 | head -n 1)
-# TODO: Grab a DB pwd and API key from the env vars.
-export API_TOKEN=${API_TOKEN:-"secret"}
-db_pwd=${DB_PWD:-"secret"}
-export DATABASE_URL="ecto://porkbrain:${db_pwd}@porkbrain-postgres/porkbrain"
+export DATABASE_URL="ecto://porkbrain:${DB_PWD}@porkbrain-postgres/porkbrain"
 
 echo "Compiling the Elixir project"
 mix deps.get
@@ -78,12 +86,12 @@ eval "${app_location}/bin/porkbrain version"
 #     --name porkbrain-postgres \
 #     postgres
 
-
 run_ssh_cmd() {
     echo $(ssh -t -i $pem_file_path $instance_name "$1")
 }
 
 # Creates a dir for the compiled files if not exists yet.
+run_ssh_cmd "rm -rf ~/server"
 run_ssh_cmd "mkdir -p ~/server"
 
 # Copies the binary over.
@@ -97,4 +105,5 @@ scp -i $pem_file_path "deployment_assets/.dockerignore" $instance_name:"~/server
 run_ssh_cmd "cd ~/server && docker build --tag porkbrain ."
 
 # Runs the show.
+run_ssh_cmd "docker stop porkbrain || true"
 run_ssh_cmd "cd ~/server && docker run --rm -d -p 80:4000 -p 443:443 --name porkbrain --network porkbrain-net porkbrain"

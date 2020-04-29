@@ -1,5 +1,8 @@
 use Mix.Config
 
+config :porkbrain,
+  api_token: "secret"
+
 # Configure your database
 config :porkbrain, Porkbrain.Repo,
   username: "postgres",

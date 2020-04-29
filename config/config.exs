@@ -8,10 +8,7 @@
 use Mix.Config
 
 config :porkbrain,
-  ecto_repos: [Porkbrain.Repo],
-  # This token is used by external services such as Automate.io to send requests
-  # to the APIs.
-  api_token: "secret"
+  ecto_repos: [Porkbrain.Repo]
 
 # Configures the endpoint
 config :porkbrain, PorkbrainWeb.Endpoint,

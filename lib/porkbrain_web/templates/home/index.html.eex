@@ -32,11 +32,7 @@
                 %>
             </time>
             <%= if post.url do %>
-                <a class="link" href="<%= post.url %>">
-                    <h3 class="heading">
-                        <%= post.heading %>
-                    </h3>
-                </a>
+                <a class="link" href="<%= post.url %>"><h3 class="heading"><%= post.heading %></h3></a>
             <% else %>
                 <h3 class="heading">
                     <%= post.heading %>

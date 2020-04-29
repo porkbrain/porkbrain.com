@@ -9,19 +9,20 @@ The deployment is still WIP.
 
 ```
 docker run --rm -it \
-    -v "${PWD}":"/porkbrain" \
+    -v "${PWD}":/porkbrain \
+    -v /tmp/porkbrain:/ssh_keys \
     -w "/porkbrain" \
     --name "porkbrain-builder" \
     porkbrain-builder /bin/bash
 ```
 
 ```
-./prod.sh --pem "/path/to/identity.pem" \
+./prod.sh --pem "/ssh_keys/porkbrain-server.pem" \
     -i "ec2-user@ec2-1-2-3-4.eu-west-1.compute.amazonaws.com"
 ```
 
 ```
-bin/porkbrain rpc "Elixir.Porkbrain.ReleaseTasks.migrate"
+docker exec bin/porkbrain rpc "Elixir.Porkbrain.ReleaseTasks.migrate"
 ```
 
 ## Running in docker
@@ -42,6 +43,9 @@ primary key column named `id` is created by default.
 You can list all databases with `\l`. Then connect to a database with
 `\c {db_name}`. To list database tables use `\dt`. `\d+ {table_name}` prints the
 structure of a table.
+
+To take a backup into an SQL file, use
+`pg_dump -U porkbrain -W --column-inserts porkbrain > porkbrain_dump.sql`.
 
 ## Markdown
 Markdown [engine][md-engine] is added, therefore pages can be written in MD if
