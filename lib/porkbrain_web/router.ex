@@ -24,5 +24,6 @@ defmodule PorkbrainWeb.Router do
     pipe_through :api
 
     post "/posts", PostController, :create
+    post "/posts/unstructured", PostController, :create_unstructured
   end
 end

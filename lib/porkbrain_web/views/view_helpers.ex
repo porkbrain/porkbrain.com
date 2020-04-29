@@ -9,9 +9,13 @@ defmodule PorkbrainWeb.ViewHelpers do
   returns the raw string.
   """
   def md_to_html(text) do
-    case Earmark.as_html(text) do
-      {:ok, parsed_md, _} -> parsed_md
-      _ -> text
+    if text == nil do
+      ""
+    else
+      case Earmark.as_html(text) do
+        {:ok, parsed_md, _} -> parsed_md
+        _ -> text
+      end
     end
   end
 end

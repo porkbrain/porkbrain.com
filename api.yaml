@@ -19,6 +19,8 @@ paths:
         post:
             summary: Creates a new post
             operationId: createPost
+            security:
+              - bearerAuth: []
             requestBody:
                 required: true
                 content:
@@ -28,20 +30,48 @@ paths:
             responses:
                 '201':
                     description: Successfully created
+                '403':
+                    description: Wrong token
                 '422':
-                    description: Some fields are missing
+                    description: Some fields are missing or in wrong format
                     content:
                         application/json:
                             schema:
-                                type: object
-                                required:
-                                    - message
-                                properties:
-                                    message:
-                                        type: string
+                                $ref: '#/components/schemas/Error'
+    /api/posts/unstructured:
+        description: >-
+            API which supports text parsing. It was designed to work well with
+            email integration. It will attempt to find a url which is alone on a
+            line and set that as post url. It will trim the white spaces from
+            the rest of the body, remove the url, and treat that as description.
+        post:
+            summary: Creates a new post from unstructured payload
+            operationId: createPostUnstructured
+            security:
+              - bearerAuth: []
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/EmailPayload'
+            responses:
+                '201':
+                    description: Successfully created
+                '400':
+                    description: Both subject and body is empty
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
                 '403':
                     description: Wrong token
-
+                '422':
+                    description: Some fields are in wrong format
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
 
 components:
   securitySchemes:
@@ -64,4 +94,18 @@ components:
             description:
                 type: string
             url:
+                type: string
+    EmailPayload:
+        type: object
+        properties:
+            subject:
+                type: string
+            body:
+                type: string
+    Error:
+        type: object
+        required:
+            - message
+        properties:
+            message:
                 type: string

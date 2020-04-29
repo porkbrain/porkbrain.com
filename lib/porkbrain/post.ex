@@ -24,6 +24,5 @@ defmodule Porkbrain.Post do
   def changeset(post, attrs) do
     post
     |> cast(attrs, [:heading, :description, :url])
-    |> validate_required([:heading, :description])
   end
 end
