@@ -5,7 +5,7 @@ defmodule PorkbrainWeb.HomeController do
   # Imports the "last" function.
   import Ecto.Query
 
-  # Views a coach profile.
+  # Views the home page, which is a HN-like list.
   def index(conn, _) do
     # TODO: Test what happens in production when this crashes.
     {:ok, posts} = Repo.transaction(fn() ->
