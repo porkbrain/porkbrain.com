@@ -13,7 +13,7 @@ config :porkbrain, PorkbrainWeb.Endpoint,
   # We probably won't need https for now as the app will be hosted on EC2 and
   # put behind a CloudFront. We can use SSL for the CF and restrict the access
   # to the EC2 instance from outside.
-  url: [host: "example.com", port: 80],
+  http: [port: 4000],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
@@ -26,7 +26,7 @@ config :logger, level: :info
 #
 #     config :porkbrain, PorkbrainWeb.Endpoint,
 #       ...
-#       url: [host: "example.com", port: 443],
+#       url: [host: "localhost", port: 443],
 #       https: [
 #         port: 443,
 #         cipher_suite: :strong,

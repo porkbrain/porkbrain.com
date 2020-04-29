@@ -1,6 +1,9 @@
 defmodule PorkbrainWeb.HomeControllerTest do
   use PorkbrainWeb.ConnCase
 
+  # TODO: Test the order in which the posts are rendered to be DESC by insert
+  # date.
+
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")
     assert html_response(conn, 200)

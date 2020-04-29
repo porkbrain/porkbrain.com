@@ -2,6 +2,28 @@
 
 Personal website.
 
+## CI/CD
+The deployment is still WIP.
+
+`docker build --tag porkbrain-builder .`
+
+```
+docker run --rm -it \
+    -v "${PWD}":"/porkbrain" \
+    -w "/porkbrain" \
+    --name "porkbrain-builder" \
+    porkbrain-builder /bin/bash
+```
+
+```
+./prod.sh --pem "/path/to/identity.pem" \
+    -i "ec2-user@ec2-1-2-3-4.eu-west-1.compute.amazonaws.com"
+```
+
+```
+bin/porkbrain rpc "Elixir.Porkbrain.ReleaseTasks.migrate"
+```
+
 ## Running in docker
 We're using [this guide][docker-with-phoenix] to set up a testing environment in
 which our Phoenix app talks to Docker.

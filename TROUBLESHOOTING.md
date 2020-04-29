@@ -2,3 +2,4 @@
     running?
 
 - `systemctl start docker`
+- `service docker start`
