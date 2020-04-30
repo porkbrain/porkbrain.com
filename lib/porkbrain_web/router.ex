@@ -20,6 +20,12 @@ defmodule PorkbrainWeb.Router do
     get "/tribute", HomeController, :tribute
   end
 
+  scope "/lectures", PorkbrainWeb do
+    pipe_through :browser
+
+    get "/rl", LecturesController, :reinforcement_learning
+  end
+
   scope "/api", PorkbrainWeb do
     pipe_through :api
 

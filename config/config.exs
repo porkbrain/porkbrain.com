@@ -25,6 +25,8 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+# Use markdown templating engine
 config :phoenix, :template_engines, md: PhoenixMarkdown.Engine
 
 # Import environment specific config. This must remain at the bottom

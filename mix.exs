@@ -4,7 +4,7 @@ defmodule Porkbrain.MixProject do
   def project do
     [
       app: :porkbrain,
-      version: "0.3.0",
+      version: "0.3.1",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
@@ -41,7 +41,7 @@ defmodule Porkbrain.MixProject do
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
+      {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.0"},
       {:ex_json_schema, "~> 0.7"},
       {:phoenix_markdown, "~> 1.0"},
