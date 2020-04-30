@@ -17,8 +17,7 @@ docker run --rm -it \
 ```
 
 ```
-./prod.sh --pem "/ssh_keys/porkbrain-server.pem" \
-    -i "ec2-user@ec2-1-2-3-4.eu-west-1.compute.amazonaws.com"
+./prod.sh --pem "/ssh_keys/porkbrain-server.pem" -i "ec2-user@ec2-1-2-3-4.eu-west-1.compute.amazonaws.com"
 ```
 
 ```
