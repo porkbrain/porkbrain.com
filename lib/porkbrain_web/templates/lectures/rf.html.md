@@ -1,5 +1,13 @@
+<header class="header">
+    <img
+        class="logo"
+        alt="image of a boy watching a robot play tic tac toe"
+        src="<%= Routes.static_path(@conn, "/images/robot_1600x1600.jpeg") %>"
+    >
+</header>
+
 # Reinforcement learning
-This body is diary which I keep while studying reinforcement learning resources.
+This body is a diary which I keep while studying reinforcement learning resources.
 
 ## Lessons
 Lessons are structured around some center point which is iconic during my self-study. I include here passages I consider crucial and my own notes and thoughts.
@@ -48,6 +56,11 @@ To end this lecture on a more ambitious note, let me quote a passage which reson
 \
 [the textbook, p. 15][sutton-barto-book]
 
+### Ants
+David Silver presented a simple example in his [video lecture][david-silver-videolecture-3] of a grid world where two fields are the terminal state. The agent's goal was to reach the terminal state in the fewer steps possible.
+
+This example gave me an idea on a pet project to play around with the methods I learned so far from the lectures and the textbook. I write a zero-player game of a grid environment in which simulated ants live. The goal of the ants is to gather food and exterminate opposing ant colonies.
+
 ## References
 1. [Reinforcement Learning: An Introduction; Richard S. Sutton and Andrew G. Barto ©2014, 2015][sutton-barto-book]
 2. [Algorithms for Reinforcement Learning; Csaba Szepesvari][rl-algorithms]
@@ -62,3 +75,4 @@ To end this lecture on a more ambitious note, let me quote a passage which reson
 [neuro-dyn-programming]: https://www.researchgate.net/publication/216722122_Neuro-Dynamic_Programming
 [rl-algorithms]: https://sites.ualberta.ca/~szepesva/rlbook.html
 [bausano-tic-tac-toe]: https://github.com/bausano/rl-algorithms/tree/master/tic-tac-toe
+[david-silver-videolecture-3]: https://youtu.be/Nd1-UUMVfz4?t=1771

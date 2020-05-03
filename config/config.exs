@@ -29,6 +29,13 @@ config :phoenix, :json_library, Jason
 # Use markdown templating engine
 config :phoenix, :template_engines, md: PhoenixMarkdown.Engine
 
+# Use tags in the MD files (e.g. to load images from assets).
+config :phoenix_markdown, :server_tags, :all
+# Allows us to use wide range of characters, such as "@".
+config :phoenix_markdown, :earmark, %{
+  smartypants: false
+}
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
