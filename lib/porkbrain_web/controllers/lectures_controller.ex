@@ -4,4 +4,8 @@ defmodule PorkbrainWeb.LecturesController do
   def reinforcement_learning(conn, _) do
     render(conn, "rf.html")
   end
+
+  def information_theory(conn, _) do
+    render(conn, "info_theory.html")
+  end
 end

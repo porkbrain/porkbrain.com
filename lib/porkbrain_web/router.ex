@@ -24,6 +24,7 @@ defmodule PorkbrainWeb.Router do
     pipe_through :browser
 
     get "/rl", LecturesController, :reinforcement_learning
+    get "/info-theory", LecturesController, :information_theory
   end
 
   scope "/api", PorkbrainWeb do
