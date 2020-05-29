@@ -104,6 +104,35 @@ console.table(
 )
 ```
 
+we can estimate entropy from n samples instead by
+
+x = (x1, ..., xn)
+
+```
+H(X) ~= ^h(x) = SUM i=1 to n of -log(p(xi))
+```
+
+in essence entropy is measure of uncertaity. reducing uncertainty gives information.
+
+if the likelihookd of an outcome is not dependend on other outcomes, it's said to be independent and identically distributed, iid. the source which generates values from such distribution that is constant over over time is called stationary
+
+if the information is like a sentence, then each outcome (let's say a word) has less entropy than the sequence (sentence) has less entropy than the sum of its individual components entropy.
+
+the unit of informations we use are dependent on the root of the logatithm. with log of 2, we get bits or Shannons. with log of e, we get nats. with log of 10, we get bans.
+
+fun fact about bans - comes from english town of Banburry and was named like that by bletchle park cryptographers. data was tabulated using specil cards banburies printed in Banbury. the method was called banbarismus
+
+## something do to with source
+natural signals conveys little info in lots of data. there's a lot of similar values (i.e. image pixels) or information duplication (ie english sentense has lots of word constructs - slovni spojeni, idioms).
+
+the optimal distribution depends on constrains that apply.
+
+on page 45 is something I dont undestand.
+
+> Second, more suble, reason involves the distibution of values in a single. The optiomal distubution for a given comm channel depends on the contrants that apply. For example, if a channel has afixed lower and upper bounds the recoding and iid signl so that all its values occur equally often guarantees that each binary digits carries as much info as possible. This for a channle with fixed bounds the optiomal distubution is uniform.
+
+Why is this a reason that natural signals such as images are dilute?
+
 ## References
 1. [Information theory: A Tutorial Introduction by Jim Stone][textbook-jim-stone]
 2. [Explain Differential Pulse Code Modulation][differential-pulse-code-modulation]
