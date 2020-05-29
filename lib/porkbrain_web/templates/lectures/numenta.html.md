@@ -94,6 +94,17 @@ The paper suggests using binary weights and permanence coefficient for each syna
 
 An elaboration on how does the threshold guarantee non trivial patterns should follow. Maybe that's where the intuition guides, nonetheless some more robust explanation is needed.
 
+In summary, the paper stress following:
+1. **Use all columns.** Can be done by boosting activity of neurons which fire less than their neighbors.
+2. **Maintain desired density.** Make a radius of inhibition around a neuron.
+3. **Avoid trivial patterns.** As noted above, I am not sure about the advice.
+4. **Avoid extra connections.** Maintain neuron ttl.
+5. **Self adjust receptive fields.**
+
+💡 Since each column is attached to a slice of the input, find out whether it is beneficial to make overlapping columns and whether they should be proximate or distributed.
+
+### Appendix B: A Comparison of Layers in the Neocortex and an HTM Region
+
 > There is variation in the thickness of the layers in different regions of the neocortex and some disagreement over the number of layers.  The variations depend on what animal is being studied, what region is being looked at, and who is doing the looking.  For example, in the image above, layer 2 and layer 3 look easily distinguished, but generally this is not the case.  Some scientists report that they cannot distinguish the two layers in the regions they study, so often layer 2 and layer 3 are grouped together and called “layer 2/3”.  Other scientists go the opposite direction, defining sub-layers such as 3A and 3B.
 \
 \
