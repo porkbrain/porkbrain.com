@@ -4,13 +4,20 @@
 This body contains notes produced when reviewing the Numenta material. How do I decide which extracts from the book to include here?
 
 ```rust
-fn should_body_include(b: MarkDownDocument, p: Paragraph) -> bool {
-     I.have_something_to_say_about(p) || (is_illustrative(p) && !is_trivial())
+fn should_body_include(p: Paragraph) -> bool {
+   I.have_something_to_say_about(p) || (is_illustrative(p) && !is_trivial(p))
 }
 ```
 
 ## HIERARCHICAL TEMPORAL MEMORY
+- &square; Finish appendix A
+- &square; Consider adding more figures where appropriate, use lossy compression and resize them
+- &square; Go through the notes, correct mistakes, rephrase where necessary
+- &square; Re-read the pseudo-code and try to write it in my own notation as an appendix of this section
+
 Paper titled [HIERARCHICAL TEMPORAL MEMORY including HTM Cortical Learning Algorithms][htm-paper] is the first paper presented by the Numenta lab. I highlight interesting points from the paper, concepts I have thought about independently before, parts which are confusing to me and statements I find harder to believe without further inspection.
+
+After reading the paper, I must say I would appreciate more references to the neuroscience literature to see where the authors drew inspiration from, and more in-depth reasoning about the decisions they made in the algorithm.
 
 > As you ascend the hierarchy there is always convergence, multiple elements in a child region converge onto an element in a parent region. However, due to feedback connections, information also diverges as you descend the hierarchy.
 \
@@ -80,14 +87,14 @@ _Spatial Pooler_ refers a process of matching patterns which are spatially simil
 
 This is beautiful.
 
-> We use the term “temporal pooler” to describe the two steps of adding context to the representation and predicting.  By creating slowly changing outputs for sequences of patterns,  we are in essence “pooling” together different patterns that follow each other in time.
+> We use the term “temporal pooler” to describe the two steps of adding context to the representation and predicting. By creating slowly changing outputs for sequences of patterns, we are in essence “pooling” together different patterns that follow each other in time.
 \
 \
 (page 25)
 
 The paper suggests using binary weights and permanence coefficient for each synapse, with a global threshold on when synapse is considered to be established. The idea of separating the lifetime into a scalar and then having on/off state sounds interesting. Although in the interview, Jeff gave the reason for binary weights to be that the brain did it, and therefore we shouldn't do scalars. I am not sure about the reasoning.
 
-> We want all our columns to represent non-trivial patterns in the input.  This goal can be achieved by setting a minimum threshold of input for the column to be active.  For example, if we set the threshold to 50, it means that a column must have a least 50 active synapses on its dendrite segment to be active, guaranteeing a certain level of complexity to the pattern it represents.
+> We want all our columns to represent non-trivial patterns in the input. This goal can be achieved by setting a minimum threshold of input for the column to be active. For example, if we set the threshold to 50, it means that a column must have a least 50 active synapses on its dendrite segment to be active, guaranteeing a certain level of complexity to the pattern it represents.
 \
 \
 (page 27)
@@ -99,13 +106,62 @@ In summary, the paper stress following:
 2. **Maintain desired density.** Make a radius of inhibition around a neuron.
 3. **Avoid trivial patterns.** As noted above, I am not sure about the advice.
 4. **Avoid extra connections.** Maintain neuron ttl.
-5. **Self adjust receptive fields.**
+5. **Self adjusting receptive fields.** This property makes the networks plastic.
 
 💡 Since each column is attached to a slice of the input, find out whether it is beneficial to make overlapping columns and whether they should be proximate or distributed.
 
+The paper further speculates on the benefit on having single cell in a column vs multiple cells in a column. The former apparently forms representations invariant to special changes, whereas the latter learns sequences. In the neocortex, we see layer 4 when a region is connected to a sensory input, especially visual. The reasoning would be that vision benefits from static patterns as much as from fluid image sequences.
+
+Are both ears connected to the same region of neocortex? If not, that's a hint that input to brain could be distributed very easily.
+
+The pseudo-code included in the paper is illustrative.
+
+> Changes to a cell's synapses are marked as temporary until the cell becomes active from feed-forward input. These temporary changes are maintained in segmentUpdateList.
+\
+\
+(page 43)
+
+I didn't really understand why do we keep the temporary flag and what do we do with a synapse when cell becomes active.
+
+### Appendix A: A Comparison between Biological Neurons and HTM Cells
+#### Proximal Dendrites
+- close to cell body
+- action potentials from several synapses approximately sum linearly
+- repeated short-windowed spikes in a single synapse have little effect after the first activation
+- preferentially feed-forward connections
+
+> To avoid having cells that never win in the competition with neighboring cells, an HTM cell will boost its feed-forward activation if it is not winning enough relative to its neighbors. Thus there is a constant competition between cells. Again, in an HTM we model this as a competition between columns, not cells. This competition is not illustrated in the diagram.
+\
+\
+(page 50)
+
+The boosting seems like a crucial part of the learning. Does brain do something similar, or did the author of the paper add this after initial attempts to model a HTM failed on the grounds of inactive columns.
+
+#### Distal Dendrites
+- thinner than proximal dendrites
+- connect to other dendrites branches rather than cell body
+- single synapse has minimal effect to cell body, but e. g. twenty active synapses within 40 um of each other will generate a dendritic spike
+
+#### Synapses
+- a typical neuron might have several thousand synapses
+- the large majority (perhaps 90%) of these will be on distal dendrites
+- In the past it was assumed that learning involved strengthening and weakening the effect or “weight” of synapses. However it's been observed that each synapse is somewhat stochastic (it won't reliably release neurotransmitter).Therefore the brain cannot depend on precision of individual synapse weights.
+
+#### Neuron Output
+The output is a spike, or “action potential”.
+
+> Although the actual output of a neuron is always a spike, there are different views on how to interpret this. The predominant view (especially in regards to the neocortex) is that the rate of spikes is what matters. Therefore the output of a cell can be viewed as a scalar value.
+\
+Some neurons also exhibit a “bursting” behavior, a short and fast series of a few spikes that are different than the regular spiking pattern.
+\
+\
+(page 49)
+
+Maybe it's all about frequencies rather than static network. That means getting a static view of the image at time `t` is not all we need to predict what's going to happen next, just like we cannot take a snapshot of a single air pressure value and expect to understand a word. However I guess that rate has to be somehow stored within the brain, that is the neurons are going to be in certain states which allow for the frequency based representation. And if that state is observed, a static view of the brain would suffice. Just like how a single air pressure value is not enough, however if we know the air pressure of larger environment, we could determine what's the air pressure going to be at a point _P_ at time _t_.
+
 ### Appendix B: A Comparison of Layers in the Neocortex and an HTM Region
 
-> There is variation in the thickness of the layers in different regions of the neocortex and some disagreement over the number of layers.  The variations depend on what animal is being studied, what region is being looked at, and who is doing the looking.  For example, in the image above, layer 2 and layer 3 look easily distinguished, but generally this is not the case.  Some scientists report that they cannot distinguish the two layers in the regions they study, so often layer 2 and layer 3 are grouped together and called “layer 2/3”.  Other scientists go the opposite direction, defining sub-layers such as 3A and 3B.
+> There is variation in the thickness of the layers in different regions of the neocortex and some disagreement over the number of layers. The variations depend on what animal is being studied, what region is being looked at, and who is doing the looking. For example, in the image above, layer 2 and layer 3 look easily distinguished, but generally this is not the case. Some scientists report that they cannot distinguish the two layers in the regions they study, so often layer 2 and layer 3 are grouped together and called “layer 2/3”. Other scientists go the opposite direction, defining sub-layers such as 3A and 3B.
 \
 \
 (page 56)
@@ -114,34 +170,16 @@ A disadvantage of naming your layers sequentially (e. g. 1-6) is that you cannot
 
 Also how do you define a sub-layer 3A and 3B, you still have 2 to deal with. Instead of squashing the two layers together, a new one is created.
 
-> When scientists use probes to see what makes neurons become active, they find that neurons that are vertically aligned, across different layers, respond to roughly the same input.
-\
-\
-(page 57)
+<img alt="Figure 1: Hierarchical connection between columns in neocortex" src="<%= Routes.static_path(@conn, "/images/numenta/neocortex-columns-connection.png") %>">
+_Figure 1: Hierarchical connection between columns in neocortex. Source: [HTM paper p. 60][htm-paper]_
 
-No citation here. I understand that the paper targets computer science people, but that doesn't mean the citations wouldn't be useful.
-
-> [...] Mini-columns are about 30um in diameter.
-\
-\
-(page 58)
-
-**μm**
-
-> [...] On the right is a conceptual drawing of a mini-column (from Peters and Yilmez). In reality is skinnier than this.
-\
-\
-(page 58)
-
-The later sentence is redundant, as it's explicitly and implicitly asserted. (Also a tiny screen where a pixel size would be on a nm orders of magnitude, the actual neuron mini-column would be thicker.)
-
-I propose a new naming for the layers based on the function I inscribe them:
+I propose a new naming for the layers based on the function I inscribe them (as understood from the figure 1):
 1. layer receives a feedback from its parent, hence it's a _feedback layer_.
 2. and 3. layer is the _direct output layer_.
 4. layer receives an input from its child, forwards some of it to other layers and some of it to parent. It also goes away the further the column is to a sensory input. It's the _feedforward layer_.
 5. layer is involved in motor generation, hence it's a _action layer_. Its output also goes to [thalamus][thalamus], which then decides whether to forward the output to parent. Wikipedia claims that thalamus control alertness and sleep.
 
-What follows in the paper is an interpretation of the layers function.
+What follows in the paper is an interpretation of the layers function. Please refer to Numenta's hypothesis about the function of each layer. The one I have described above was a guess based on _figure 1_.
 
 ## References
 1. [Numenta - Advancing Machine Intelligence with Neuroscience][numenta-homepage]
