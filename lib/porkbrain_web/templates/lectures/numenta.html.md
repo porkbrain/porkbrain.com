@@ -114,7 +114,30 @@ The paper further speculates on the benefit on having single cell in a column vs
 
 Are both ears connected to the same region of neocortex? If not, that's a hint that input to brain could be distributed very easily.
 
-The pseudo-code included in the paper is illustrative.
+```
+35. if overlapDutyCycle(c) < minDutyCycle(c) then
+36.   increasePermanences(c, 0.1*connectedPerm)
+
+(page 36)
+```
+
+I don't understand what does the condition assert. Why do we increase permanence when the frequency of input making the column active is smaller than the frequency this cell fires.
+
+> The second phase calculates the predictive state for each cell.  A cell will turn on its predictiveState if any one of its segments becomes active, i.e. if enough of its horizontal connections are currently firing due to feed-forward input.
+\
+\
+(page 40)
+
+```
+14. for c, i in cells
+15.   for s in segments(c, i)
+16.      if segmentActive(c, i, s, t) then
+17.         predictiveState(c, i, t) = 1
+
+(page 40)
+```
+
+Don't we want to set predictive state when we get lots of distal dendrites firing, rather than proximal dendrites which carry the mentioned feed-forward input?
 
 > Changes to a cell's synapses are marked as temporary until the cell becomes active from feed-forward input. These temporary changes are maintained in segmentUpdateList.
 \
@@ -161,7 +184,7 @@ Maybe it's all about frequencies rather than static network. That means getting 
 
 ### Appendix B: A Comparison of Layers in the Neocortex and an HTM Region
 
-> There is variation in the thickness of the layers in different regions of the neocortex and some disagreement over the number of layers. The variations depend on what animal is being studied, what region is being looked at, and who is doing the looking. For example, in the image above, layer 2 and layer 3 look easily distinguished, but generally this is not the case. Some scientists report that they cannot distinguish the two layers in the regions they study, so often layer 2 and layer 3 are grouped together and called “layer 2/3”. Other scientists go the opposite direction, defining sub-layers such as 3A and 3B.
+> There is variation in the thickness of the layers in different regions of the neocortex and some disagreement over z the number of layers. The variations depend on what animal is being studied, what region is being looked at, and who is doing the looking. For example, in the image above, layer 2 and layer 3 look easily distinguished, but generally this is not the case. Some scientists report that they cannot distinguish the two layers in the regions they study, so often layer 2 and layer 3 are grouped together and called “layer 2/3”. Other scientists go the opposite direction, defining sub-layers such as 3A and 3B.
 \
 \
 (page 56)
