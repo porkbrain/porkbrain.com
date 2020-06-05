@@ -104,6 +104,11 @@ console.table(
 )
 ```
 
+
+
+
+
+
 we can estimate entropy from n samples instead by
 
 x = (x1, ..., xn)
@@ -131,7 +136,11 @@ on page 45 is something I dont undestand.
 
 > Second, more suble, reason involves the distibution of values in a single. The optiomal distubution for a given comm channel depends on the contrants that apply. For example, if a channel has afixed lower and upper bounds the recoding and iid signl so that all its values occur equally often guarantees that each binary digits carries as much info as possible. This for a channle with fixed bounds the optiomal distubution is uniform.
 
-Why is this a reason that natural signals such as images are dilute?
+Why is this a reason that natural signals such as images are dilute? maybe because they don't have a clear bound and some values are much more common than others?
+
+shannons theorem is great because is applies to both independent sequences (such as die rolls) and dependent sequences, such as language.
+
+shannons source coding theorem guarantees that for any message there is an encoding of symbols such that each channel input of C binary digits can convey on average close to C bits of informaiton
 
 ## References
 1. [Information theory: A Tutorial Introduction by Jim Stone][textbook-jim-stone]
