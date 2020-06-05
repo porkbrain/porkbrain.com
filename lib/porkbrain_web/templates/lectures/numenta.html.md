@@ -10,10 +10,7 @@ fn should_body_include(p: Paragraph) -> bool {
 ```
 
 ## HIERARCHICAL TEMPORAL MEMORY
-- &square; Finish appendix A
-- &square; Consider adding more figures where appropriate, use lossy compression and resize them
 - &square; Go through the notes, correct mistakes, rephrase where necessary
-- &square; Re-read the pseudo-code and try to write it in my own notation as an appendix of this section
 
 Paper titled [HIERARCHICAL TEMPORAL MEMORY including HTM Cortical Learning Algorithms][htm-paper] is the first paper presented by the Numenta lab. I highlight interesting points from the paper, concepts I have thought about independently before, parts which are confusing to me and statements I find harder to believe without further inspection.
 
@@ -147,6 +144,9 @@ Don't we want to set predictive state when we get lots of distal dendrites firin
 I didn't really understand why do we keep the temporary flag and what do we do with a synapse when cell becomes active.
 
 ### Appendix A: A Comparison between Biological Neurons and HTM Cells
+<img alt="Figure 1: A Comparison between Biological Neurons and HTM Cells" src="<%= Routes.static_path(@conn, "/images/numenta/neuron-htm-comparison.png") %>">
+_Figure 1: A Comparison between Biological Neurons and HTM Cells. Source: [HTM paper p. 47][htm-paper]_
+
 #### Proximal Dendrites
 - close to cell body
 - action potentials from several synapses approximately sum linearly
@@ -182,6 +182,22 @@ Some neurons also exhibit a “bursting” behavior, a short and fast series of 
 
 Maybe it's all about frequencies rather than static network. That means getting a static view of the image at time `t` is not all we need to predict what's going to happen next, just like we cannot take a snapshot of a single air pressure value and expect to understand a word. However I guess that rate has to be somehow stored within the brain, that is the neurons are going to be in certain states which allow for the frequency based representation. And if that state is observed, a static view of the brain would suffice. Just like how a single air pressure value is not enough, however if we know the air pressure of larger environment, we could determine what's the air pressure going to be at a point _P_ at time _t_.
 
+> An HTM cell has two different binary outputs:  1) the cell is active due to feed-forward input (via the proximal dendrite), and 2) the cell is active due to lateral connections (via the distal dendrite segments).  The former is called the “active state” and the latter is called the “predictive state”.
+\
+...
+\
+Only the feed-forward active state is connected to other cells in the region, ensuring that predictions are always based on the current input (plus context).  We don’t want to make predictions based on predictions.
+\
+\
+(page 52)
+
+This is quite confusing. The author claims that there are two outputs, but one paragraph later they claim that the output is not connected to other cells. But it makes sense, the important part here is _"in the region"_. We output the predictions to other regions in the hierarchy.
+
+The paper gives some suggestions on further reading:
+
+- Stuart, Greg, Spruston, Nelson, Häusser, Michael, Dendrites, second edition (New York: Oxford University Press, 2008)
+- Mountcastle, Vernon B.  Perceptual Neuroscience: The Cerebral Cortex (Cambridge, Mass.: Harvard University Press, 1998)
+
 ### Appendix B: A Comparison of Layers in the Neocortex and an HTM Region
 
 > There is variation in the thickness of the layers in different regions of the neocortex and some disagreement over z the number of layers. The variations depend on what animal is being studied, what region is being looked at, and who is doing the looking. For example, in the image above, layer 2 and layer 3 look easily distinguished, but generally this is not the case. Some scientists report that they cannot distinguish the two layers in the regions they study, so often layer 2 and layer 3 are grouped together and called “layer 2/3”. Other scientists go the opposite direction, defining sub-layers such as 3A and 3B.
@@ -193,16 +209,44 @@ A disadvantage of naming your layers sequentially (e. g. 1-6) is that you cannot
 
 Also how do you define a sub-layer 3A and 3B, you still have 2 to deal with. Instead of squashing the two layers together, a new one is created.
 
-<img alt="Figure 1: Hierarchical connection between columns in neocortex" src="<%= Routes.static_path(@conn, "/images/numenta/neocortex-columns-connection.png") %>">
-_Figure 1: Hierarchical connection between columns in neocortex. Source: [HTM paper p. 60][htm-paper]_
+<img alt="Figure 2: Hierarchical connection between columns in neocortex" src="<%= Routes.static_path(@conn, "/images/numenta/neocortex-columns-connection.png") %>">
+_Figure 2: Hierarchical connection between columns in neocortex. Source: [HTM paper p. 60][htm-paper]_
 
-I propose a new naming for the layers based on the function I inscribe them (as understood from the figure 1):
+I propose a new naming for the layers based on the function I inscribe them (as understood from the _figure 2_):
 1. layer receives a feedback from its parent, hence it's a _feedback layer_.
 2. and 3. layer is the _direct output layer_.
 4. layer receives an input from its child, forwards some of it to other layers and some of it to parent. It also goes away the further the column is to a sensory input. It's the _feedforward layer_.
 5. layer is involved in motor generation, hence it's a _action layer_. Its output also goes to [thalamus][thalamus], which then decides whether to forward the output to parent. Wikipedia claims that thalamus control alertness and sleep.
 
-What follows in the paper is an interpretation of the layers function. Please refer to Numenta's hypothesis about the function of each layer. The one I have described above was a guess based on _figure 1_.
+What follows in the paper is an interpretation of the layers function. The description I have described above is a guess based on _figure 2_.
+
+#### Layer 4
+- useful for non-temporary patterns, like for vision
+
+#### Layer 3
+- learns variable order sequences and forms predictions that are more stable than its input
+- projects to the next region in the hierarchy
+
+#### Layer 5
+- combines specific timing, attention, and motor behavior
+- is similar to layer 3 with three differences
+   - layer 5 adds a concept of timing
+   - we want layer 3 to make predictions as a far into the future as possible, in contrast, we only want layer 5 to predict the next element
+   - the output of layer 5 always projects to sub-cortical motor centers, and the feed-forward path is gated by the thalamus
+
+### Summary
+> What does an HTM region correspond to in the neocortex?
+\
+\
+We believe these two flavors correspond to layer 3 and layer 4 in the neocortex.
+\
+\
+(page 63)
+
+A very inspirational document. I would appreciate more neuroscience related citations in order to discover neuroscience literature.
+
+- &square; Re-read the pseudo-code and try to write it in my own notation as an appendix of this section
+
 
 ## References
 1. [Numenta - Advancing Machine Intelligence with Neuroscience][numenta-homepage]
