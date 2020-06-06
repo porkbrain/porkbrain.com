@@ -25,6 +25,7 @@ defmodule PorkbrainWeb.Router do
 
     get "/rl", LecturesController, :reinforcement_learning
     get "/info-theory", LecturesController, :information_theory
+    get "/numenta", LecturesController, :numenta
   end
 
   scope "/api", PorkbrainWeb do

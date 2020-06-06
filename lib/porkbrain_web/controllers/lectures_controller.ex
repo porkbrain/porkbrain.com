@@ -8,4 +8,8 @@ defmodule PorkbrainWeb.LecturesController do
   def information_theory(conn, _) do
     render(conn, "info_theory.html")
   end
+
+  def numenta(conn, _) do
+    render(conn, "numenta.html")
+  end
 end
