@@ -10,23 +10,19 @@ fn should_body_include(p: Paragraph) -> bool {
 ```
 
 ## HIERARCHICAL TEMPORAL MEMORY
-- &square; Go through the notes, correct mistakes, rephrase where necessary
-
-Paper titled [HIERARCHICAL TEMPORAL MEMORY including HTM Cortical Learning Algorithms][htm-paper] is the first paper presented by the Numenta lab. I highlight interesting points from the paper, concepts I have thought about independently before, parts which are confusing to me and statements I find harder to believe without further inspection.
-
-After reading the paper, I must say I would appreciate more references to the neuroscience literature to see where the authors drew inspiration from, and more in-depth reasoning about the decisions they made in the algorithm.
+Paper titled [HIERARCHICAL TEMPORAL MEMORY including HTM Cortical Learning Algorithms][htm-paper] is the first paper presented by the Numenta lab. I highlight interesting points from the paper, concepts I have given thought to in past, parts which are confusing to me and statements which impel further inspection.
 
 > As you ascend the hierarchy there is always convergence, multiple elements in a child region converge onto an element in a parent region. However, due to feedback connections, information also diverges as you descend the hierarchy.
 \
 \
 (page 8)
 
-This is somewhat similar to what I conceptually wanted to achieve with visual cortex of PAM machines. [SOM][som]-like hierarchical structure which on lower level recognizes common details and puts them together into higher levels. The advantage I saw in this is that already learned structures can be reused, which is also what this paper hints.⌋
+This is somewhat similar to what I conceptually wanted to achieve with visual cortex of PAM machines. That is a [SOM][som]-like hierarchical structure which on lower level recognizes common details and puts them together into higher levels. The advantage I saw in this is that already learned structures can be reused, which is also what this paper hints.
 
-HTM is inspired by the columns of neocortex. Since this is an important observation, that brain is structured into self-similar columns, it seems to inspire all Numenta algorithms in some way.
+HTM is inspired by the columns of neocortex. Since this is an important observation -brain being structured into self-similar columns - it seems to inspire all Numenta algorithms in some way.
 
-_Sparse Distributed Representations_ is another key concept taken from the brain. Sparse refers to the fact that there are about 2% of neurons are active at a time when brain operates. Since there are a lot of neurons, there are a lot of ways to pick 2% of them with minimal overlap. This gives the network robustness.
-Distributed refers to the need of many neurons activations to convey some full concept.
+_Sparse Distributed Representations_ is another key concept taken from the brain. Sparseness refers to the fact that about 2% of neurons are active at a time when brain operates. Since there are a lot of neurons, there are a lot of ways to pick 2% of them with minimal overlap. This gives the network robustness.
+Distributed refers to the need of many neurons activations to convey concepts.
 
 > [...] The first thing an HTM region does is to convert its input into a sparse distributed representation.For example, a region might receive 20,000 input bits. The percentage of input bits that are “1” and “0” might vary significantly over time. One time there might be 5,000 “1” bits and another time there might be 9,000 “1” bits. The HTM region could convert this input into an internal representation of 10,000 bits of which 2%, or 200, are active at once, regardless of how many of the input bits are “1”. As the input to the HTM region varies over time, the internal representation also will change, but there always will be about 200 bits out of 10,000 active.
 \
@@ -51,7 +47,7 @@ Some key properties of HTM prediction as described by the paper
 \
 (page 18)
 
-I wonder how do we have long conscious sequences of thoughts. Since a thought does not require a motor output. Maybe there could be a region in the machine which gets fed inputs from other regions. If the input is language, the machine has an internal dialog. If the input is kind of visual, it would be imagining what something looks like.
+I wonder how do we have long conscious sequences of thoughts. Since a thought does not require a motor output. Maybe there could be a region in the machine which gets fed speech or visuals outputted by other regions. If the input is language, the machine has an internal dialog. If the input is kind of visual, it would be imagining what something looks like.
 
 > The proximal dendrite segment receives feed-forward input and the distal dendrite segments receive lateral input from nearby cells.
 \
@@ -89,14 +85,14 @@ This is beautiful.
 \
 (page 25)
 
-The paper suggests using binary weights and permanence coefficient for each synapse, with a global threshold on when synapse is considered to be established. The idea of separating the lifetime into a scalar and then having on/off state sounds interesting. Although in the interview, Jeff gave the reason for binary weights to be that the brain did it, and therefore we shouldn't do scalars. I am not sure about the reasoning.
+The paper suggests using binary weights and permanence coefficient for each synapse, with a global threshold on when synapse is considered to be established. The idea of separating the lifetime into a scalar and then having on/off state sounds interesting. Although in the interview Jeff Hawkins's reason for binary weights was that it's what the brain in a sense does, and therefore we shouldn't do scalars. This reasoning seems valid in Numenta's case where they model brain as closely as possible.
 
 > We want all our columns to represent non-trivial patterns in the input. This goal can be achieved by setting a minimum threshold of input for the column to be active. For example, if we set the threshold to 50, it means that a column must have a least 50 active synapses on its dendrite segment to be active, guaranteeing a certain level of complexity to the pattern it represents.
 \
 \
 (page 27)
 
-An elaboration on how does the threshold guarantee non trivial patterns should follow. Maybe that's where the intuition guides, nonetheless some more robust explanation is needed.
+An elaboration on how does the threshold guarantee non trivial patterns should follow. Maybe that's where the intuition guides, nonetheless it's not enough.
 
 In summary, the paper stress following:
 1. **Use all columns.** Can be done by boosting activity of neurons which fire less than their neighbors.
@@ -109,16 +105,16 @@ In summary, the paper stress following:
 
 The paper further speculates on the benefit on having single cell in a column vs multiple cells in a column. The former apparently forms representations invariant to special changes, whereas the latter learns sequences. In the neocortex, we see layer 4 when a region is connected to a sensory input, especially visual. The reasoning would be that vision benefits from static patterns as much as from fluid image sequences.
 
-Are both ears connected to the same region of neocortex? If not, that's a hint that input to brain could be distributed very easily.
+Are both ears connected to the same region of neocortex? If not, that's a hint that input to brain inspired algorithm could be distributed very easily across many machines.
 
 ```
 35. if overlapDutyCycle(c) < minDutyCycle(c) then
-36.   increasePermanences(c, 0.1*connectedPerm)
+36.   increasePermanences(c, 0.1 * connectedPerm)
 
 (page 36)
 ```
 
-I don't understand what does the condition assert. Why do we increase permanence when the frequency of input making the column active is smaller than the frequency this cell fires.
+I don't understand what does the condition assert. Why do we increase permanence when the frequency of input making the column active is smaller than the frequency this cell fires?
 
 > The second phase calculates the predictive state for each cell.  A cell will turn on its predictiveState if any one of its segments becomes active, i.e. if enough of its horizontal connections are currently firing due to feed-forward input.
 \
@@ -158,7 +154,7 @@ _Figure 1: A Comparison between Biological Neurons and HTM Cells. Source: [HTM p
 \
 (page 50)
 
-The boosting seems like a crucial part of the learning. Does brain do something similar, or did the author of the paper add this after initial attempts to model a HTM failed on the grounds of inactive columns.
+The boosting seems like a crucial part of the learning. Does brain do something similar, or did the author of the paper add this after initial attempts to model a HTM failed on the grounds of inactive columns?
 
 #### Distal Dendrites
 - thinner than proximal dendrites
@@ -168,7 +164,7 @@ The boosting seems like a crucial part of the learning. Does brain do something 
 #### Synapses
 - a typical neuron might have several thousand synapses
 - the large majority (perhaps 90%) of these will be on distal dendrites
-- In the past it was assumed that learning involved strengthening and weakening the effect or “weight” of synapses. However it's been observed that each synapse is somewhat stochastic (it won't reliably release neurotransmitter).Therefore the brain cannot depend on precision of individual synapse weights.
+- In the past it was assumed that learning involved strengthening and weakening the effect or “weight” of synapses. However it's been observed that each synapse is somewhat stochastic (it won't reliably release neurotransmitter). Therefore the brain cannot depend on precision of individual synapse weights. There are often several synapses between the same neurons for redundancy.
 
 #### Neuron Output
 The output is a spike, or “action potential”.
@@ -191,7 +187,7 @@ Only the feed-forward active state is connected to other cells in the region, en
 \
 (page 52)
 
-This is quite confusing. The author claims that there are two outputs, but one paragraph later they claim that the output is not connected to other cells. But it makes sense, the important part here is _"in the region"_. We output the predictions to other regions in the hierarchy.
+This is quite confusing. The author claims that there are two outputs, but one paragraph later they claim that the output is not connected to other cells. To make sense of it, we must stress that it's _"in the region"_. We output the predictions to other regions in the hierarchy.
 
 The paper gives some suggestions on further reading:
 
@@ -243,10 +239,9 @@ We believe these two flavors correspond to layer 3 and layer 4 in the neocortex.
 \
 (page 63)
 
-A very inspirational document. I would appreciate more neuroscience related citations in order to discover neuroscience literature.
+A very inspirational document. I must say I would appreciate more references to the neuroscience literature to see where the authors drew inspiration from, and more in-depth reasoning about the decisions they made in the algorithm.
 
 - &square; Re-read the pseudo-code and try to write it in my own notation as an appendix of this section
-
 
 ## References
 1. [Numenta - Advancing Machine Intelligence with Neuroscience][numenta-homepage]
