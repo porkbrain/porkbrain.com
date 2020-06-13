@@ -54,6 +54,7 @@ they have suffix `html.md`.
 - [Building a JSON API with Phoenix 1.3 and Elixir][building-json-api]
 - [Elixir JSON Schema validator][validate-json-schema]
 - HTTPS [guide][plug-ssl] and [discussion][ssl-discussion]
+- [MathJax basic tutorial and quick reference][mathjax-reference]
 
 <!-- Invisible List of References -->
 [docker-with-phoenix]: https://github.com/fireproofsocks/phoenix-docker-compose
@@ -64,3 +65,4 @@ they have suffix `html.md`.
 [md-engine]: https://github.com/boydm/phoenix_markdown
 [plug-ssl]: https://github.com/elixir-plug/plug/pull/803/files
 [ssl-discussion]: https://elixirforum.com/t/https-ssl-phoenix-1-4/18868/6
+[mathjax-reference]: https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference
