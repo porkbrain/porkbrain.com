@@ -52,7 +52,7 @@ A matrix which further satisfies following conditions is called _reduced echelon
 
 &square; Write a program to find reduced echelon form and let it generate LaTex for each step.
 
-## `Ax = b`
+## Ax = b, Ax = 0
 
 If v<sub>1</sub>, ⋯, v<sub>p</sub> are in ℝ<sup>n</sup>, then set of all linear combinations of those vectors is denoted Span {v<sub>1</sub>, ⋯, v<sub>p</sub>}. The set is a subset of ℝ<sup>n</sup> spanned by the vectors. In another words, Span {v<sub>1</sub>, ⋯, v<sub>p</sub>} is the collection of all vectors in form c<sub>1</sub>v<sub>1</sub> + ⋯ + c<sub>p</sub>v<sub>p</sub> where c<sub>1</sub>, ⋯, c<sub>p</sub> are scalars.
 
@@ -115,8 +115,6 @@ Proof for b)
 \end{align*}
 </figure>
 
-## `Ax = 0`
-
 Vectors v<sub>1</sub>, ⋯, v<sub>p</sub> are said to be _linearly independent_ if the equation x<sub>1</sub>v<sub>1</sub> + ⋯ + x<sub>p</sub>v<sub>p</sub> = 0 has only the trivial solution, that is vector x is a null vector. If there exist some constants which aren't all zeros and give solution to the equation, the vectors are _linearly dependent_.
 
 `Ax = 0` can be written as x<sub>1</sub>a<sub>1</sub> + ⋯ + x<sub>n</sub>a<sub>n</sub> = 0. Each linear dependence between columns of `A` contributes a non trivial solution. Hence columns of `A` are independent iff `Ax = 0` has only a trivial solution.
@@ -124,6 +122,8 @@ Vectors v<sub>1</sub>, ⋯, v<sub>p</sub> are said to be _linearly independent_ 
 A zero vector is linearly dependent because x<sub>1</sub>0 = 0 has non trivial solutions. Therefore any column set including a zero vector in dependent.
 
 > **Theorem.** A set `S` of 2+ vectors is linearly dependent iff at least one of the vectors in `S` is a linear combination of the others. In fact, if `S` is linearly dependent and v<sub>1</sub> ≠ 0, then some v<sub>j</sub> (with j > 1) is a linear combination of the preceding vectors, v<sub>1</sub>, …, v<sub>j-1</sub>.
+
+## Transformations
 
 A _transformation_ from ℝ<sub>n</sub> to ℝ<sub>m</sub> is a rule which assigns to each vector x in ℝ<sub>n</sub> vector T(x) (also called an image) in ℝ<sub>m</sub>. The set ℝ<sub>n</sub> is called _domain_ of T and ℝ<sub>m</sub> a _codomain_ of T. The set of all images T(x) is called the _range_ of T.
 
@@ -172,6 +172,16 @@ A generalization of above is referred to as the _superposition principle_, where
 
 T(c<sub>1</sub>v<sub>1</sub>, ⋯, c<sub>p</sub>v<sub>p</sub>) =
 c<sub>1</sub>T(v<sub>1</sub>) + ⋯ + c<sub>p</sub>T(v<sub>p</sub>)
+
+<img alt="Various transformations in R2." src="<%= Routes.static_path(@conn, "/images/linear-algebra/transformations.jpeg") %>">
+
+A mapping is said to be _onto_ if each `b` is an image of at least one `x`. In another words the whole output space is covered by the transformation. If `T(x) = b` has no solution for some `b` it is not onto. This can only be true if we map from same or higher dimension.
+
+A mapping is said to be _one-to-one_ if each `b` is the solution to at most one `T(x)`. That is no two vectors are mapped into the same image. This can only be true if we map from same or lower dimension. To determine whether a transformation is onto, we can check whether `Ax = 0` has only the trivial solution.
+
+If a transformation is ℝ<sub>n</sub> ⟶ ℝ<sub>n</sub>, then if a transformation is onto, it also is one-to-one.
+
+> **Theorem.** Let ℝ<sub>n</sub> ⟶ ℝ<sub>m</sub> be a linear transformation and `A` its standard matrix. Then `T` is onto iif the columns of `A` span ℝ<sub>m</sub>. `T` is one-to-one if the columns of `A` are independent.
 
 <!-- Invisible List of References -->
 [mathjax]: https://github.com/mathjax/MathJax
