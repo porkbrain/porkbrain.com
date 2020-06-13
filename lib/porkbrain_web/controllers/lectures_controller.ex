@@ -12,4 +12,8 @@ defmodule PorkbrainWeb.LecturesController do
   def numenta(conn, _) do
     render(conn, "numenta.html")
   end
+
+  def linear_algebra(conn, _) do
+    render(conn, "linear_algebra.html")
+  end
 end

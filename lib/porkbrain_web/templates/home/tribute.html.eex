@@ -9,8 +9,15 @@
     <div style="display: flex; align-items: center; justify-content: center">
             <img
                 style="max-height: 100vh; max-width: 100vw"
-                alt="porkbrain logo; image of a pig with exposed brain being looked at through a magnifying glass by a person"
+                alt="an image of a small robot playing tic tac toe"
                 src="<%= Routes.static_path(@conn, "/images/robot_1600x1600.jpeg") %>"
+            >
+    </div>
+    <div style="display: flex; align-items: center; justify-content: center">
+            <img
+                style="max-height: 100vh; max-width: 100vw"
+                alt="a human on a grid with their head slice up"
+                src="<%= Routes.static_path(@conn, "/images/brain_1125x1134.jpeg") %>"
             >
     </div>
 </a>
