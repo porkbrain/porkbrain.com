@@ -125,5 +125,53 @@ A zero vector is linearly dependent because x<sub>1</sub>0 = 0 has non trivial s
 
 > **Theorem.** A set `S` of 2+ vectors is linearly dependent iff at least one of the vectors in `S` is a linear combination of the others. In fact, if `S` is linearly dependent and v<sub>1</sub> ≠ 0, then some v<sub>j</sub> (with j > 1) is a linear combination of the preceding vectors, v<sub>1</sub>, …, v<sub>j-1</sub>.
 
+A _transformation_ from ℝ<sub>n</sub> to ℝ<sub>m</sub> is a rule which assigns to each vector x in ℝ<sub>n</sub> vector T(x) (also called an image) in ℝ<sub>m</sub>. The set ℝ<sub>n</sub> is called _domain_ of T and ℝ<sub>m</sub> a _codomain_ of T. The set of all images T(x) is called the _range_ of T.
+
+<img alt="Transformation of a plane in R3 into R3." src="<%= Routes.static_path(@conn, "/images/linear-algebra/range.jpeg") %>">
+
+A transformation can be expressed as a matrix times a vector, i.e. `Ax = b` where `b` is the image of `x` under `T`.
+
+As an example, let's take some shear transformation.
+
+<figure>
+\begin{equation}
+    T(x) =
+    \begin{bmatrix}
+        1 & 3 \\
+        0 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1\\
+        x_2
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        x_1\\
+        0
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        3x_2\\
+        x_2
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        x1 + 3x_2\\
+        x_2
+    \end{bmatrix}
+\end{equation}
+</figure>
+
+<img alt="Transformation of a square in R2 to a parallelogram in R2." src="<%= Routes.static_path(@conn, "/images/linear-algebra/shear.jpeg") %>">
+
+> **Definition.** Transformation `T` is linear if
+- `T(u + v) = T(u) + T(v)` for all vectors `u`, `v` in domain of `T`
+- `T(cu) = cT(u)` for all scalars `c` and vectors `u` in domain of `T`
+
+A generalization of above is referred to as the _superposition principle_, where one can think about v<sub>1</sub>, ⋯, v<sub>p</sub> as signals coming into a system, and T(v<sub>1</sub>), ⋯, T(v<sub>p</sub>) as responses to those signals.
+
+T(c<sub>1</sub>v<sub>1</sub>, ⋯, c<sub>p</sub>v<sub>p</sub>) =
+c<sub>1</sub>T(v<sub>1</sub>) + ⋯ + c<sub>p</sub>T(v<sub>p</sub>)
+
 <!-- Invisible List of References -->
 [mathjax]: https://github.com/mathjax/MathJax
