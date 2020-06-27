@@ -16,4 +16,8 @@ defmodule PorkbrainWeb.LecturesController do
   def linear_algebra(conn, _) do
     render(conn, "linear_algebra.html")
   end
+
+  def linear_algebra_problems(conn, _) do
+    render(conn, "linear_algebra_problems.html")
+  end
 end

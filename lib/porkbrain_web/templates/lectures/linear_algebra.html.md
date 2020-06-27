@@ -17,7 +17,10 @@ MathJax = {
 </header>
 
 # Linear algebra
-This body contains resources, notes, exercises of interest and programs concerned with linear algebra. The LaTex rendering is handled by [MathJax][mathjax].
+This body contains resources, notes and programs concerned with linear algebra. The LaTex rendering is handled by [MathJax][mathjax].
+
+Problems can be found [here](problems).
+
 ---
 
 System of linear equations can have
@@ -162,7 +165,7 @@ As an example, let's take some shear transformation.
 \end{equation}
 </figure>
 
-<img alt="Transformation of a square in R2 to a parallelogram in R2." src="<%= Routes.static_path(@conn, "/images/linear-algebra/shear.jpeg") %>">
+<img alt="Transformation of a square in ℝ2 to a parallelogram in ℝ2." src="<%= Routes.static_path(@conn, "/images/linear-algebra/shear.jpeg") %>">
 
 > **Definition.** Transformation `T` is linear if
 - `T(u + v) = T(u) + T(v)` for all vectors `u`, `v` in domain of `T`
@@ -173,7 +176,7 @@ A generalization of above is referred to as the _superposition principle_, where
 T(c<sub>1</sub>v<sub>1</sub>, ⋯, c<sub>p</sub>v<sub>p</sub>) =
 c<sub>1</sub>T(v<sub>1</sub>) + ⋯ + c<sub>p</sub>T(v<sub>p</sub>)
 
-<img alt="Various transformations in R2." src="<%= Routes.static_path(@conn, "/images/linear-algebra/transformations.jpeg") %>">
+<img alt="Various transformations in ℝ2." src="<%= Routes.static_path(@conn, "/images/linear-algebra/transformations.jpeg") %>">
 
 A mapping is said to be _onto_ if each `b` is an image of at least one `x`. In another words the whole output space is covered by the transformation. If `T(x) = b` has no solution for some `b` it is not onto. This can only be true if we map from same or higher dimension.
 
@@ -183,5 +186,107 @@ If a transformation is ℝ<sub>n</sub> ⟶ ℝ<sub>n</sub>, then if a transforma
 
 > **Theorem.** Let ℝ<sub>n</sub> ⟶ ℝ<sub>m</sub> be a linear transformation and `A` its standard matrix. Then `T` is onto iif the columns of `A` span ℝ<sub>m</sub>. `T` is one-to-one if the columns of `A` are independent.
 
+## Matrix operations
+
+<figure>
+\begin{equation}
+    \begin{bmatrix}
+    a_{11}    & ⋯     & a_{1j}      & ⋯     & a_{1n}\\
+    ⋮       &       & ⋮         &       & ⋮\\
+    a_{i1}    & ⋯     & a_{ij}      & ⋯     & a_{in}\\
+    ⋮       &       & ⋮         &       & ⋮\\
+    a_{m1}    & ⋯     & a_{mj}      & ⋯     & a_{mn}\\
+    \end{bmatrix}
+    = A_{m⨯n}
+\end{equation}
+</figure>
+
+Let `A` and `B` be matrices of the same size and `r` and `s` scalars. Then
+1. `A + B` = `B + A`
+2. `r(A + B) = rA + rB`
+3. `0 + A = A`
+4. `(r + s)A = rA + sA`
+5. `A + (B + C) = (A + B) + C`
+6. `A(BC) = (AB)C`
+7. `A(B + C) = AB + AC`
+8. `(A + C)B = AB + CB`
+9. `r(AB) = (rA)B = A(rB)`
+
+<img alt="Matrix multiplication is transformation." src="<%= Routes.static_path(@conn, "/images/linear-algebra/matrix_multiplication.jpeg") %>">
+
+In general `AB ≠ BA`. The cancellation laws do not apply, that is `AB = AC` is not the same as `B = C`. If `AB = 0`, in general we cannot conclude that `A = 0` or `B = 0`.
+
+A matrix transpose is a matrix where columns are rows and rows are columns.
+
+<figure>
+\begin{equation}
+    \begin{bmatrix}
+    a & b & c\\
+    d & e & f\\
+    g & h & i\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    a & d & g\\
+    b & e & h\\
+    c & f & i\\
+    \end{bmatrix}^T
+\end{equation}
+</figure>
+
+- `(A`<sup>`T`</sup>`)`<sup>`T`</sup>` = A`
+- `(A + B)`<sup>`T`</sup>` = A`<sup>`T`</sup>` + B`<sup>`T`</sup>
+- `(rA)`<sup>`T`</sup>` = rA`<sup>`T`</sup>
+- `(AB)`<sup>`T`</sup>` =B`<sup>`T`</sup>`A`<sup>`T`</sup>
+
+Matrix `A` is said to be invertible if there exists matrix `C` for which it's true that `CA = I` and `AC = I`. In this case `C` is the inverse of `A`. Since `C` is uniquely defined, we name it `A`<sup>`-1`</sup>.
+
+Proof: `B = BI = (BA)C = IC = C`
+
+We can find an inverse of a `2⨯2` matrix using following formula:
+
+<figure>
+\begin{align*}
+        &A =
+        \begin{bmatrix}
+            a & b\\
+            c & d\\
+        \end{bmatrix}
+
+        \\
+
+        &A^{-1} =
+        \frac{1}{ad - bc}
+        \begin{bmatrix}
+            d & -b\\
+            -c & a\\
+        \end{bmatrix}
+\end{align*}
+</figure>
+
+If `ad - bc = 0`, then the matrix has no inverse. This quantity is called the determinant and is written as `detA`.
+
+> **Theorem.** If `A` is an invertible matrix then each `x` in `Ax = b` has a unique solution `A`<sup>`-1`</sup>`b`.
+
+Proof: `Ax = (AA`<sup>`-1`</sup>`)b = Ib = b`
+
+> **Theorem.** If `A` and `B` are invertible matrices:
+1. `A = (A`<sup>`-1`</sup>`)`<sup>`-1`</sup>
+2. `(AB)`<sup>`-1`</sup>` = B`<sup>`-1`</sup>`A`<sup>`-1`</sup>
+
+Proof: `B`<sup>`-1`</sup>`A`<sup>`-1`</sup>`(AB) = B`<sup>`-1`</sup>`(A`<sup>`-1`</sup>`A)B = B`<sup>`-1`</sup>`B = I`
+
+3. `(A`<sup>`T`</sup>`)`<sup>`-1`</sup>` = (A`<sup>`-1`</sup>`)`<sup>`T`</sup>
+
+
+
 <!-- Invisible List of References -->
 [mathjax]: https://github.com/mathjax/MathJax
+
+<!--
+    List of special characters used:
+    ⨯
+    ⋯
+    ⋮
+    ℝ
+-->
