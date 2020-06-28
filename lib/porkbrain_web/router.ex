@@ -24,7 +24,10 @@ defmodule PorkbrainWeb.Router do
     pipe_through :browser
 
     get "/rl", LecturesController, :reinforcement_learning
+    get "/la", LecturesController, :linear_algebra
+    get "/la/problems", LecturesController, :linear_algebra_problems
     get "/info-theory", LecturesController, :information_theory
+    get "/numenta", LecturesController, :numenta
   end
 
   scope "/api", PorkbrainWeb do
