@@ -13,7 +13,7 @@ docker run --rm -it \
     -v /tmp/porkbrain:/ssh_keys \
     -w "/porkbrain" \
     --name "porkbrain-builder" \
-    porkbrain-builder /bin/bash
+    porkbrain-builder bash
 ```
 
 ```
