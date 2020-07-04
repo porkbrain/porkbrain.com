@@ -31,7 +31,6 @@ Assume that the matrix `A` is row equivalent to `B`. Without calculations, list 
         0 & 0 & 3 & -1 & 1\\
         0 & 0 & 0 & 1 & 3\\
         0 & 0 & 0 & 0 & 0\\
-        0 & 0 & 0 & 0 & 0\\
     \end{bmatrix}
 \end{equation}
 </figure>
@@ -39,7 +38,7 @@ Assume that the matrix `A` is row equivalent to `B`. Without calculations, list 
 #### Solution
 <figure>
 \begin{equation}
-    B_{[Col A]} =
+    B_{Col A} =
     \set{
         \begin{bmatrix}
             2\\ -2\\ 4\\ -2
@@ -56,7 +55,7 @@ Assume that the matrix `A` is row equivalent to `B`. Without calculations, list 
 
 <figure>
 \begin{equation}
-    B_{[Row A]} =
+    B_{Row A} =
     \set{
         (2, -3, 6, 2, 5);
         (0, 0, 3, -1, 1);
@@ -69,15 +68,41 @@ Assume that the matrix `A` is row equivalent to `B`. Without calculations, list 
 
 `rank A + dim Nul A = 5  =>  dim Nul A = 5 - rank A = 5 - 3 = `**`2`**
 
+To find the basis of `Nul A`, let's start with `Bx = 0` and find dependencies between the variables.
 <figure>
 \begin{equation}
-    B_{[Nul A]} =
+    \begin{bmatrix}
+        \frac{3}{2}x_2 - 3x_3 - x_4 - \frac{5}{2}x_5\\
+        x_2\\
+        \frac{1}{3}x_4 - \frac{1}{3}x_5\\
+        -3x_5\\
+        x_5
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \frac{3}{2}x_2 + \frac{9}{2}x_5\\
+        x_2\\
+        -\frac{4}{3}x_5\\
+        -3x_5\\
+        x_5
+    \end{bmatrix}
+    =
+    x_2
+    \begin{bmatrix}
+        \frac{3}{2}\\ 1\\ 0\\ -0\\ 0
+    \end{bmatrix} +
+    x_5
+    \begin{bmatrix}
+        \frac{9}{2}\\ 0\\ -\frac{4}{3}\\ -3\\ 1
+    \end{bmatrix}
+    \implies
+    B_{Nul A} =
     \set{
         \begin{bmatrix}
-            -3\\ 0\\ 0\\ 0
+            \frac{3}{2}\\ 1\\ 0\\ 0\\ 0
         \end{bmatrix};
         \begin{bmatrix}
-            5\\ 1\\ 3\\ 0
+            \frac{9}{2}\\ 0\\ -\frac{4}{3}\\ -3\\ 1
         \end{bmatrix}
     }
 \end{equation}
@@ -111,8 +136,8 @@ Which of the subspaces `Row A`, `Col A`, `Nul A`, `Row A`<sup>`T`</sup>, `Col A`
 #### Solution
 |  `ℝ`<sup>`m`</sup>    | `ℝ`<sup>`n`</sup>     |
 |:-:                    |:-:                    |
-| `Row A`               | `Row A`<sup>`T`</sup> |
-| `Col A`<sup>`T`</sup> | `Col A`               |
+| `Row A`<sup>`T`</sup> | `Row A`               |
+| `Col A`               | `Col A`<sup>`T`</sup> |
 | `Nul A`<sup>`T`</sup> | `Nul A`               |
 
 There are 4 distinct spaces: `Row A = Col A`<sup>`T`</sup>; `Col A = Row A`<sup>`T`</sup>; `Nul A`; `Nul A`<sup>`T`</sup>.
