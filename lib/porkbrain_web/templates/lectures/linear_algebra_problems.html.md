@@ -204,7 +204,7 @@ One of the octahedral sites is at **`[x]`**<sub>`B`</sub>. Determine the coordin
 \end{equation}
 </figure>
 
-#### 38
+#### 38.
 One of the tetrahedral sites is at **`[x]`**<sub>`B`</sub>. Determine the coordinates of this sites relative to the standard basis of `ℝ`<sup>`3`</sup>.
 <figure>
 \begin{equation}
@@ -234,6 +234,76 @@ One of the tetrahedral sites is at **`[x]`**<sub>`B`</sub>. Determine the coordi
     =
     \begin{bmatrix}
         1.3\\ 0.75\\ 1.6
+    \end{bmatrix}
+\end{equation}
+</figure>
+
+## Change of basis
+### 4.7/7.
+Let `B` and `C` be bases for `ℝ`<sup>`2`</sup>. Find the change-of-coordinates matrix from `B` to `C` and from `C` to `B`.
+
+<figure>
+\begin{equation}
+    B =
+    \begin{bmatrix}
+        7 & -3\\
+        5 & -1\\
+    \end{bmatrix}
+    \hspace{1cm}
+    C =
+    \begin{bmatrix}
+        1 & -2\\
+        -5 & -2\\
+    \end{bmatrix}
+\end{equation}
+</figure>
+
+#### Solution
+
+<figure>
+\begin{equation}
+    \begin{bmatrix}
+        1 & -2 && 7 & -3\\
+        -5 & -2 && 5 & -1\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1 & -2 && 7 & -3\\
+        0 & -8 && -40 & -16\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1 & -2 && 7 & -3\\
+        0 & 1 && -5 & 2\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1 & 0 && -3 & 1\\
+        0 & 1 && -5 & 2\\
+    \end{bmatrix}
+\end{equation}
+</figure>
+
+Hence the change-of-coordinates matrix from `B` to `C` is
+<figure>
+\begin{bmatrix}
+    -3 & 1\\
+    -5 & 2\\
+\end{bmatrix}
+</figure>
+
+To find the change-of-coordinates matrix from `C` to `B`, we take an inverse
+<figure>
+\begin{equation}
+    \frac{1}{-3*2 - (-5)*1}
+    \begin{bmatrix}
+        2 & -1\\
+        5 & -3\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        -2 & 1\\
+        -5 & 3\\
     \end{bmatrix}
 \end{equation}
 </figure>
