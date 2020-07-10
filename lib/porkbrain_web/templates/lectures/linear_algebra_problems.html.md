@@ -308,6 +308,109 @@ To find the change-of-coordinates matrix from `C` to `B`, we take an inverse
 \end{equation}
 </figure>
 
+## Eigenvalues, eigenspaces and eigenvetors
+### 5.1/25.
+Let λ be an eigenvalue of an invertible matrix `A`. Show that λ<sup>-1</sup> is an eigenvalue of `A`<sup>`-1`</sup>.
+
+#### Solution
+1. `Ax = λx`
+2. `x = A`<sup>`-1`</sup>`λx`
+3. `λ`<sup>`-1`</sup>`x = A`<sup>`-1`</sup>`x`
+
+### 5.1/26.
+Show that if `A`<sup>`2`</sup> is the zero matrix, then the only eigenvalue of `A` is 0.
+
+#### Solution
+1. `Ax = λx   | .A`
+2. `AAx = Aλx` since `AA = A`<sup>`2`</sup>` = 0`
+3. `0x = Aλx`
+4. `0x = Aλx`
+5. `0 = Aλx` for any `x` and for all `A` which `AA = 0`, then `λ` must be `0`.
+
+### 5.1/32.
+`T` is the transformation on `ℝ`<sup>`3`</sup> that rotates points about some line through the origin. Find an λ and describe eigenspace.
+
+#### Solution
+Let vector `u` represent the line about which all points rotate.
+
+The points on the line `u` will stay in their place and won't be rotated. Therefore the line `u` is an eigenspace with `λ = 1`.
+
+## Markov chains
+### 1.
+A small remote village receives radio broadcasts from two radio stations, a news station and a music station. Of the listeners who are tuned to the news station, 70% will remain listening to the news after the station break that occurs each half hour, while 30% will switch to the music station at the station break. Of the listeners who are tuned to the music station, 60% will switch to the news station at the station break, while 40% will remain listening to the music, Suppose everyone is listening to the news at 8: 15 A.M.
+
+
+1. Give the stochastic matrix that describes how the radio listeners tend to change stations at each station break. Label the rows and columns.
+<figure>
+\begin{bmatrix}
+    & N & M \\
+    N & .7 & .6\\
+    M & .3 & .4\\
+\end{bmatrix}
+</figure>
+
+2. Give the initial state vector.
+
+<figure>
+\begin{equation}
+    Ps =
+    \begin{bmatrix}
+        .7 & .6\\
+        .3 & .4\\
+    \end{bmatrix}
+    \begin{bmatrix}
+        1\\
+        0\\
+    \end{bmatrix}
+\end{equation}
+</figure>
+
+3. What percentage of the listeners will be listening to the music station at 9:25 A.M. (after the station breaks at 8:30 and 9:00 A.M.)?
+
+<figure>
+\begin{equation}
+    P^2s =
+    \begin{bmatrix}
+        .67 \\
+        .33\\
+    \end{bmatrix}
+\end{equation}
+</figure>
+33% of listener will be listening to the music station.
+
+### 2.
+A laboratory animal max eat any one of three foods each day. Laboratory records show that if the animal chooses one food on one trial , it will choose the same food on the next trial with a probability of 50%, and it will choose the other roods on the next trial with equal probabilities of 25%.
+
+1. What is the stochastic matrix for this situation?
+<figure>
+\begin{bmatrix}
+    & A & B & C \\
+    A & .5 & .25 & .25\\
+    B & .25 & .5 & .25\\
+    C & .25 & .25 & .5\\
+\end{bmatrix}
+</figure>
+
+2. If the animal chooses food #1 on an initial trial, what is the probability that it will choose food #2 on the second trial after the initial trial?
+<figure>
+\begin{equation}
+    P^3
+    \begin{bmatrix}
+        .1\\
+        .0\\
+        .0\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \frac{11}{32}\\
+        \frac{21}{64}\\
+        \frac{21}{64}\\
+    \end{bmatrix}
+\end{equation}
+</figure>
+
+There is ~32% chance it will pick another food.
+
 ## Legend
 
 - `dim` stands for dimensions of some space
@@ -322,4 +425,5 @@ To find the change-of-coordinates matrix from `C` to `B`, we take an inverse
     ⋯
     ⋮
     ℝ
+    λ
 -->
