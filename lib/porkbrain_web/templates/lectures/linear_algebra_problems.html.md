@@ -396,9 +396,9 @@ A laboratory animal max eat any one of three foods each day. Laboratory records 
 \begin{equation}
     P^3
     \begin{bmatrix}
-        .1\\
-        .0\\
-        .0\\
+        1\\
+        0\\
+        0\\
     \end{bmatrix}
     =
     \begin{bmatrix}
