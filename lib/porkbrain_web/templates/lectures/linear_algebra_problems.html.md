@@ -321,11 +321,10 @@ Let λ be an eigenvalue of an invertible matrix `A`. Show that λ<sup>-1</sup> i
 Show that if `A`<sup>`2`</sup> is the zero matrix, then the only eigenvalue of `A` is 0.
 
 #### Solution
-1. `Ax = λx   | .A`
+1. `Ax = λx` multiplied by `A` from right
 2. `AAx = Aλx` since `AA = A`<sup>`2`</sup>` = 0`
-3. `0x = Aλx`
-4. `0x = Aλx`
-5. `0 = Aλx` for any `x` and for all `A` which `AA = 0`, then `λ` must be `0`.
+3. `0 = λAx` using first equation to substitute `Ax` for `λA`
+4. `0 = λλx`since `x` is an eigenvector it cannot be `0`, so `λ` must be zero
 
 ### 5.1/32.
 `T` is the transformation on `ℝ`<sup>`3`</sup> that rotates points about some line through the origin. Find an λ and describe eigenspace.
