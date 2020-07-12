@@ -737,6 +737,10 @@ We find `v`<sub>`2`</sub> by finding `nul (A - 0.3I)`. The vector is `<-1, 1>`.
 \end{equation}
 </figure>
 
+3. For `k = 1, 2, ⋯`, define `x`<sub>`k`</sub>` = A`<sup>`k`</sup>`x`<sub>`0`</sub>. Compute `x`<sub>`1`</sub> and `x`<sub>`2`</sub> and write a formula for `x`<sub>`k`</sub>. Then show that `x`<sub>`k`</sub>` → v`<sub>`1`</sub> as `k` increases.
+
+TODO
+
 ## Legend
 
 - `dim` stands for dimensions of some space
