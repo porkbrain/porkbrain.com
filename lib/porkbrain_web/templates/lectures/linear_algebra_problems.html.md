@@ -739,7 +739,39 @@ We find `v`<sub>`2`</sub> by finding `nul (A - 0.3I)`. The vector is `<-1, 1>`.
 
 3. For `k = 1, 2, ⋯`, define `x`<sub>`k`</sub>` = A`<sup>`k`</sup>`x`<sub>`0`</sub>. Compute `x`<sub>`1`</sub> and `x`<sub>`2`</sub> and write a formula for `x`<sub>`k`</sub>. Then show that `x`<sub>`k`</sub>` → v`<sub>`1`</sub> as `k` increases.
 
-TODO
+<figure>
+\begin{aligned}
+    x_1 =
+    \begin{bmatrix}
+        .6 & .3\\
+        .4 & .7
+    \end{bmatrix}
+    \begin{bmatrix}
+        .5\\ .5\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        .45\\ .55\\
+    \end{bmatrix}
+\end{aligned}
+</figure>
+
+<figure>
+\begin{aligned}
+    x_2 =
+    \begin{bmatrix}
+        .6 & .3\\
+        .4 & .7
+    \end{bmatrix}
+    \begin{bmatrix}
+        .45\\ .55\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        .435\\ .565\\
+    \end{bmatrix}
+\end{aligned}
+</figure>
 
 ## Legend
 
