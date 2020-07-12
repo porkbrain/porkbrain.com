@@ -410,6 +410,333 @@ A laboratory animal max eat any one of three foods each day. Laboratory records 
 
 There is ~32% chance it will pick another food.
 
+## Characteristic equation
+### 5/13.
+Find characteristic equation, eigenvalues and eigenspace.
+<figure>
+\begin{equation}
+    A =
+    \begin{bmatrix}
+        6   &   -2  &   0\\
+        -2  &   9   &   0\\
+        5   &   8   &   3
+    \end{bmatrix}
+\end{equation}
+</figure>
+
+#### Solution
+The eigenvalues of `A` are the same as of `A`<sup>`T`</sup>.
+
+<figure>
+\begin{align*}
+    det
+    \begin{bmatrix}
+        6 - λ   &   -2  &   5\\
+        -2  &   9 - λ   &   8\\
+        0   &   0   &   3 - λ
+    \end{bmatrix}
+    = 0\\[2ex]
+    (3 - λ)
+    \begin{vmatrix}
+        6 - λ   &   -2\\
+        -2  &   9 - λ
+    \end{vmatrix}
+    = 0\\[2ex]
+    (3 - λ)((6 - λ)(9 - λ) - 4) = 0\\[2ex]
+    λ^3 - 18λ^2 + 95λ - 150 = 0
+\end{align*}
+</figure>
+
+The roots of the polynomial above are 3, 5 and 10. Let's use the roots to find eigenspace.
+
+1. λ = 3
+<figure>
+\begin{aligned}
+    &\begin{bmatrix}
+        6 - 3   &   -2  &   5   &&  0\\
+        -2  &   9 - 3   &   8   &&  0\\
+        0   &   0   &   3 - 3   &&  0
+    \end{bmatrix}
+    \\[2ex]
+    &\begin{bmatrix}
+        6   &   -4  &   10   &&  0\\
+        -2  &   6   &   8   &&  0\\
+        0   &   0   &   0   &&  0
+    \end{bmatrix}
+    \\[2ex]
+    &\begin{bmatrix}
+        0   &   14  &   34  &&  0\\
+        -2  &   6   &   8   &&  0\\
+        0   &   0   &   0   &&  0
+    \end{bmatrix}
+    \\[2ex]
+    &\begin{bmatrix}
+        0   &   1  &   \frac{17}{7}  &&  0\\
+        -2  &   0   &   -\frac{46}{7}   &&  0\\
+        0   &   0   &   0   &&  0
+    \end{bmatrix}
+    \implies
+    \begin{bmatrix}
+        \frac{23}{7}\\
+        \frac{17}{7}\\
+        1
+    \end{bmatrix}
+\end{aligned}
+</figure>
+
+2. λ = 5
+<figure>
+\begin{aligned}
+    &\begin{bmatrix}
+        6 - 5   &   -2  &   5   &&  0\\
+        -2  &   9 - 5   &   8   &&  0\\
+        0   &   0   &   3 - 5   &&  0
+    \end{bmatrix}
+    \\[2ex]
+    &\begin{bmatrix}
+        1   &   -2  &   0  &&  0\\
+        -2  &   4   &   0   &&  0\\
+        0   &   0   &   -2   &&  0
+    \end{bmatrix}
+    \\[2ex]
+    &\begin{bmatrix}
+        1   &   -2  &   0  &&  0\\
+        0  &   0   &   0   &&  0\\
+        0   &   0   &   -2   &&  0
+    \end{bmatrix}
+    \implies
+    \begin{bmatrix}
+        2\\
+        1\\
+        0
+    \end{bmatrix}
+\end{aligned}
+</figure>
+
+2. λ = 10
+<figure>
+\begin{aligned}
+    &\begin{bmatrix}
+        6 - 10   &   -2  &   5   &&  0\\
+        -2  &   9 - 10   &   8   &&  0\\
+        0   &   0   &   3 - 10   &&  0
+    \end{bmatrix}
+    \\[2ex]
+    &\begin{bmatrix}
+        2   &   1  &   0  &&  0\\
+        0  &   0   &   0   &&  0\\
+        0   &   0   &   -7   &&  0
+    \end{bmatrix}
+    \implies
+    \begin{bmatrix}
+        -\frac{1}{2}\\
+        1\\
+        0
+    \end{bmatrix}
+\end{aligned}
+</figure>
+
+### 5/18.
+It can be shown that algebraic multiplicity of an eigenvalue λ is always greter than or equal to the dimention of the eigenspace corresponding to λ. Find _h_ in the matrix `A` below such that the eigenspace for `λ = 5` is two-dimensional.
+<figure>
+\begin{equation}
+    A =
+    \begin{bmatrix}
+        5   &   -2  &   6   &   -1\\
+        0   &   3   &   h   &   0\\
+        0   &   0   &   5   &   4\\
+        0   &   0   &   0   &   1
+    \end{bmatrix}
+\end{equation}
+</figure>
+
+#### Solution
+
+<figure>
+\begin{aligned}
+    \begin{bmatrix}
+        0   &   -2  &   6   &   -1  &&  0\\
+        0   &   -2   &   h   &   0  &&  0\\
+        0   &   0   &   0   &   4   &&  0\\
+        0   &   0   &   0   &   -4  &&  0\\
+    \end{bmatrix}
+    \\[2ex]
+    \begin{bmatrix}
+        0   &   -2  &   6   &   -1  &&  0\\
+        0   &   0   &   h - 6   &   0   &&  0\\
+        0   &   0   &   0   &   4   &&  0\\
+        0   &   0   &   0   &   -4  &&  0\\
+    \end{bmatrix}
+\end{aligned}
+</figure>
+
+To get another free variable we need `h = 6`.
+
+### 5/23.
+Show that if `A = QR` with `Q` invertible, then `A` is similar to `A' = RQ`.
+
+#### Solution
+<figure>
+\begin{aligned}
+    QR &= P^{-1}RQP\\
+    R &= Q^{-1}P^{-1}RQP\\
+    C &= QP\\
+    R &= C^{-1}RC\\
+    \\[2ex]
+    C &= I \implies QP = I\\
+    P &= Q^-1
+\end{aligned}
+</figure>
+
+We've shown that `R` is similar to itself via matrix `C`. We've shown one solution to self similarity being an identity matrix, which implied that a solution to similarity between `A` and `A'` can be `Q`<sup>`-1`</sup>.
+
+### Show similarity
+Show that matrices `A` and `B` are similar to each other by showing that `PA = BP` has a solution with `P`.
+
+<figure>
+\begin{aligned}
+    A =
+    \begin{bmatrix}
+        1 & 2\\
+        3 & 4
+    \end{bmatrix}
+    &&B =
+    \begin{bmatrix}
+        6 & -1\\
+        4 & -1
+    \end{bmatrix}
+    &&P =
+    \begin{bmatrix}
+        a & b\\
+        c & d
+    \end{bmatrix}
+\end{aligned}
+</figure>
+
+#### Solution
+<figure>
+\begin{equation}
+    \begin{bmatrix}
+        a + 3b  &   2a + 4b\\
+        c + 3b  &   2c + 4d
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        6a - c  &   6b - d\\
+        4a - c  &   4b - d\\
+    \end{bmatrix}
+\end{equation}
+</figure>
+
+When we convert this into a system of equations:
+
+<figure>
+\begin{aligned}
+    -5a + 3b - c + 0 &= 0\\
+    2a - 2b + 0 + d &= 0\\
+    -4a + 0 + 2c + 3d &= 0\\
+    0 - 4b + 2c + 5d &= 0\\
+\end{aligned}
+</figure>
+
+<figure>
+\begin{aligned}
+    \begin{bmatrix}
+        -5 & 3 & 1 & 0  && 0\\
+        2 & 2 & 0 & 1 && 0\\
+        -4 & 0 & 2 & 3 && 0\\
+        0 & -4 & 2 & 5 && 0
+    \end{bmatrix}
+    \\
+    \begin{bmatrix}
+        -5 & 3 & 1 & 0  && 0\\
+        2 & 2 & 0 & 1 && 0\\
+        0 & 4 & 2 & 5 && 0\\
+        0 & -4 & 2 & 5 && 0
+    \end{bmatrix}
+    \\
+    \begin{bmatrix}
+        -5 & 0 & 1 & 0  && 0\\
+        2 & 0 & 0 & 1 && 0\\
+        0 & 4 & 0 & 0 && 0\\
+        0 & 0 & 2 & 5 && 0
+    \end{bmatrix}
+    \\
+    \begin{bmatrix}
+        0 & 0 & 1 & \frac{5}{2}  && 0\\
+        2 & 0 & 0 & 1 && 0\\
+        0 & 4 & 0 & 0 && 0\\
+        0 & 0 & 2 & 5 && 0
+    \end{bmatrix}
+    \\
+    \begin{bmatrix}
+        2 & 0 & 0 & 1 && 0\\
+        0 & 4 & 0 & 0 && 0\\
+        0 & 0 & 2 & 5 && 0\\
+        0 & 0 & 0 & 0  && 0
+    \end{bmatrix}
+\end{aligned}
+</figure>
+
+Since the above has many solution, we can conclude that there will be at least one matrix `P` for which `AP = PB`. That means `A` and `B` are similar.
+
+### 5/25.
+<figure>
+\begin{aligned}
+    A =
+    \begin{bmatrix}
+        .6 & .3\\
+        .4 & .7
+    \end{bmatrix}
+    &&v_1 =
+    \begin{bmatrix}
+        \frac{3}{7}\\
+        \frac{4}{7}
+    \end{bmatrix}
+    &&x_0 =
+    \begin{bmatrix}
+        .5\\
+        .5\\
+    \end{bmatrix}
+\end{aligned}
+</figure>
+
+1. Find a basis for `ℝ`<sup>`2`</sup> consisting of `v`<sub>`1`</sub> and another eigenvector `v`<sub>`2`</sub> of `A`.
+
+We find characteristic equation by `det (A - λI)`. The equation is a quadratic `λ`<sup>`2`</sup>` - 1.3λ + 0.3 = 0`. The two roots are `1` and `0.3`. We've already got the eigenvector for `λ = 1`.
+
+We find `v`<sub>`2`</sub> by finding `nul (A - 0.3I)`. The vector is `<-1, 1>`.
+
+<figure>
+\begin{equation}
+    B =
+    \set{
+        \begin{bmatrix}
+            \frac{3}{7}\\ \frac{4}{7}
+        \end{bmatrix};
+        \begin{bmatrix}
+            -1 \\ 1
+        \end{bmatrix}
+    }
+\end{equation}
+</figure>
+
+2. Verify that `x`<sub>`0`</sub> may be written in the form `x`<sub>`0`</sub>` = v`<sub>`1`</sub>` + cv`<sub>`2`</sub>.
+
+<figure>
+\begin{equation}
+    \begin{bmatrix}
+        .5\\.5
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \frac{3}{7} - c\\ \frac{4}{7} + c
+    \end{bmatrix}
+    \implies
+    c = -\frac{1}{14}
+\end{equation}
+</figure>
+
 ## Legend
 
 - `dim` stands for dimensions of some space
