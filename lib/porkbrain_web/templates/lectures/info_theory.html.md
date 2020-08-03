@@ -1,3 +1,13 @@
+<script>
+// Left aligns all figures.
+MathJax = {
+  chtml: { displayAlign: 'left' }
+}
+</script>
+
+<!-- Includes tex2html which draws mathematical notation from LaTex online. -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
 # Information theory
 This body is a diary which I update as I study information theory. I use a textbook [Information theory: A Tutorial Introduction][textbook-jim-stone] by Jim stone. When I reference a figure from this textbook, it can be found in the [associated resources][textbook-jim-stone-figures] on author's page.
 
@@ -103,6 +113,45 @@ console.table(
      ['X', 'pX', 'HX', 'm']
 )
 ```
+
+It's often the case where we want to get an entropy of a random variable `X` based on samples we obtained. We call this entropy `h(x)`. Then as our samples approach infinity `h(x) ≈ H(X)`.
+
+<figure>
+$$\hat{h}(x) = \sum_{j=1}^{n} -{\log p(x_j)}$$
+</figure>
+
+In its essence entropy is a measure of uncertainty. Reducing uncertainty gives us information.
+
+If likelihood of an outcome is not dependent on other outcomes, it's said to be _independent_ and _identically distributed_, shortened to **iid**. A source which generates values from such distribution that is constant over over time is called _stationary_.
+
+If the information is something like a sentence, then each outcome (let's say a word) has less entropy than the sequence (sentence), which in turn has less entropy than the sum of entropies of its individual components.
+
+The units of information we use are dependent on the root of the logarithm. With log of 2, we get _bits_ or _Shannons_. With log of e, we get _nats_. With log of 10, we get _bans_.
+
+Fun fact about bans: the name comes from an English town of Banbury and was named like that by Bletchley park cryptographers. The data were tabulated using special cards called banburies printed in Banbury. The method was called banbarismus.
+
+## The source coding theorem
+Natural signals convey little information in lots of data. There are many similar values (i.e. image gradients from one colour to another) or information duplication (i.e. sentence has lots of word constructs and idioms, where we predict what will come next).
+
+We can well predict what comes next in a sentence. Sometimes the source of the sentence, the speaker, surprises us by choosing an unusual continuation of the sentence. That's a common pattern in jokes.
+
+> Second, more subtle, reason involves the distribution of values in a single. The optimal distribution for a given comm channel depends on the constrains that apply. For example, if a channel has a fixed lower and upper bounds the recoding and iid signal so that all its values occur equally often guarantees that each binary digits carries as much info as possible. This for a channel with fixed bounds the optional distribution is uniform.
+
+Why is this a reason that natural signals such as images are dilute?
+
+The capacity of a discrete noiseless channel `C` is the maximum number of bits the channel can transmit per some time unit. Since one binary number conveys at most one bit of information, a channel which transmits `R` binary digits per second has a capacity of `R`. Usually to achieve this capacity we must use codewords for our messages.
+
+<figure>
+\[ C = \lim_{t\to\infty} \frac{\log N(t)}{t} \]
+</figure>
+
+We defined the capacity as an average number of messages communicated per second until `t` seconds. We use limit here because some messages can be very long, so they need to average out.
+
+Let's say that we have a iid channel which communicates 9 binary digits per seconds. That means every second, we pick a message from `N(1) = 2`<sup>`9`</sup> possible messages. At time `t` we've send a sequence of messages from `N(t) = 2`<sup>`9t`</sup> possible sequences of messages. We get `log N(t)` to find out how many bits (yes/no decisions) have we made in total. In our case it's `9t`. Then we divide this by the time to get average per second, that is 9 bits per second.
+
+shannons source coding theorem guarantees that for any message there is an encoding of symbols such that each channel input of C binary digits can convey on average close to C bits of informaiton
+
+shannons theorem is great because is applies to both independent sequences (such as die rolls) and dependent sequences, such as language.
 
 ## References
 1. [Information theory: A Tutorial Introduction by Jim Stone][textbook-jim-stone]
