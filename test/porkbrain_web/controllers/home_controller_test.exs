@@ -35,7 +35,7 @@ defmodule PorkbrainWeb.HomeControllerTest do
     })
     assert response(conn, :created)
 
-    assert html_response(get(conn, "/"), 200) =~ "<h4>This is MD</h4>"
+    assert html_response(get(conn, "/"), 200) =~ "<h4>\nThis is MD</h4>"
   end
 
   test "GET /tribute", %{conn: conn} do

@@ -5,8 +5,10 @@ Personal website.
 ## CI/CD
 The deployment is still WIP.
 
+Prepare builder image.
 `docker build --tag porkbrain-builder .`
 
+Start builder container. Notice the second mounted volume for ssh keys.
 ```
 docker run --rm -it \
     -v "${PWD}":/porkbrain \
@@ -16,10 +18,12 @@ docker run --rm -it \
     porkbrain-builder bash
 ```
 
+Run the deploy script. You need a pem file in the mounted volume to access the instance (replace the placeholder with instance name). TODO: .env file.
 ```
 ./prod.sh --pem "/ssh_keys/porkbrain-server.pem" -i "ec2-user@ec2-1-2-3-4.eu-west-1.compute.amazonaws.com"
 ```
 
+To run migrations.
 ```
 docker exec bin/porkbrain rpc "Elixir.Porkbrain.ReleaseTasks.migrate"
 ```

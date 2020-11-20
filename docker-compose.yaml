@@ -1,5 +1,9 @@
 version: '3.7'
 
+networks:
+  server:
+    name: porkbrain-net
+
 volumes:
     postgres:
 
@@ -15,6 +19,8 @@ services:
             - DB_HOST=porkbrain-postgres
         command:
             - ./run.sh
+        networks:
+            - server
         volumes:
             - type: bind
               source: .
@@ -24,3 +30,10 @@ services:
         image: postgres
         volumes:
             - postgres:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+        networks:
+            - server
+        environment:
+            # we don't need to auth locally
+            POSTGRES_HOST_AUTH_METHOD: trust
