@@ -130,7 +130,10 @@ A zero vector is linearly dependent because x<sub>1</sub>0 = 0 has non trivial s
 
 A _transformation_ from ℝ<sub>n</sub> to ℝ<sub>m</sub> is a rule which assigns to each vector x in ℝ<sub>n</sub> vector T(x) (also called an image) in ℝ<sub>m</sub>. The set ℝ<sub>n</sub> is called _domain_ of T and ℝ<sub>m</sub> a _codomain_ of T. The set of all images T(x) is called the _range_ of T.
 
-<img alt="Transformation of a plane in R3 into R3." src="<%= Routes.static_path(@conn, "/images/linear-algebra/range.jpeg") %>">
+<img
+    alt="Transformation of a plane in R3 into R3."
+    src="<%= Routes.static_path(@conn, "/images/linear-algebra/range.jpeg") %>"
+>
 
 A transformation can be expressed as a matrix times a vector, i.e. `Ax = b` where `b` is the image of `x` under `T`.
 
@@ -165,7 +168,10 @@ As an example, let's take some shear transformation.
 \end{equation}
 </figure>
 
-<img alt="Transformation of a square in ℝ2 to a parallelogram in ℝ2." src="<%= Routes.static_path(@conn, "/images/linear-algebra/shear.jpeg") %>">
+<img
+    alt="Transformation of a square in ℝ2 to a parallelogram in ℝ2."
+    src="<%= Routes.static_path(@conn, "/images/linear-algebra/shear.jpeg") %>"
+>
 
 > **Definition.** Transformation `T` is linear if
 - `T(u + v) = T(u) + T(v)` for all vectors `u`, `v` in domain of `T`
@@ -176,7 +182,10 @@ A generalization of above is referred to as the _superposition principle_, where
 T(c<sub>1</sub>v<sub>1</sub>, ⋯, c<sub>p</sub>v<sub>p</sub>) =
 c<sub>1</sub>T(v<sub>1</sub>) + ⋯ + c<sub>p</sub>T(v<sub>p</sub>)
 
-<img alt="Various transformations in ℝ2." src="<%= Routes.static_path(@conn, "/images/linear-algebra/transformations.jpeg") %>">
+<img
+    alt="Various transformations in ℝ2."
+    src="<%= Routes.static_path(@conn, "/images/linear-algebra/transformations.jpeg") %>"
+>
 
 A mapping is said to be _onto_ if each `b` is an image of at least one `x`. In another words the whole output space is covered by the transformation. If `T(x) = b` has no solution for some `b` it is not onto. This can only be true if we map from same or higher dimension.
 
@@ -212,7 +221,10 @@ Let `A` and `B` be matrices of the same size and `r` and `s` scalars. Then
 8. `(A + C)B = AB + CB`
 9. `r(AB) = (rA)B = A(rB)`
 
-<img alt="Matrix multiplication is transformation." src="<%= Routes.static_path(@conn, "/images/linear-algebra/matrix_multiplication.jpeg") %>">
+<img
+    alt="Matrix multiplication is transformation."
+    src="<%= Routes.static_path(@conn, "/images/linear-algebra/matrix_multiplication.jpeg") %>"
+>
 
 In general `AB ≠ BA`. The cancellation laws do not apply, that is `AB = AC` is not the same as `B = C`. If `AB = 0`, in general we cannot conclude that `A = 0` or `B = 0`.
 

@@ -78,8 +78,7 @@ eval "${app_location}/bin/porkbrain version"
 # Don't forget to change the password.
 # docker run -d --rm \
 #     -p 5432:5432 \
-#     -v ~/data:/var/lib/postgresql/data \
-#     -v ~/logs:/logs \
+#     -v pqdata:/var/lib/postgresql/data \
 #     -e POSTGRES_PASSWORD=secret \
 #     -e POSTGRES_USER=porkbrain \
 #     --network porkbrain-net \
@@ -91,19 +90,24 @@ run_ssh_cmd() {
 }
 
 # Creates a dir for the compiled files if not exists yet.
+echo "Removing old binary"
 run_ssh_cmd "rm -rf ~/server"
 run_ssh_cmd "mkdir -p ~/server"
 
 # Copies the binary over.
+echo "Copying the binary"
 rsync -avz -e "ssh -i ${pem_file_path}" "${app_location}" "${instance_name}":"~/server"
 
 # Copies docker related files.
+echo "Copying docker files"
 scp -i $pem_file_path "deployment_assets/Dockerfile" $instance_name:"~/server/Dockerfile"
 scp -i $pem_file_path "deployment_assets/.dockerignore" $instance_name:"~/server/.dockerignore"
 
 # Builds the image with the app
+echo "Building the image"
 run_ssh_cmd "cd ~/server && docker build --tag porkbrain ."
 
 # Runs the show.
+echo "Restarting container"
 run_ssh_cmd "docker stop porkbrain || true"
 run_ssh_cmd "cd ~/server && docker run --rm -d -p 80:4000 -p 443:443 --name porkbrain --network porkbrain-net porkbrain"

@@ -140,7 +140,11 @@ Don't we want to set predictive state when we get lots of distal dendrites firin
 I didn't really understand why do we keep the temporary flag and what do we do with a synapse when cell becomes active.
 
 ### Appendix A: A Comparison between Biological Neurons and HTM Cells
-<img alt="Figure 1: A Comparison between Biological Neurons and HTM Cells" src="<%= Routes.static_path(@conn, "/images/numenta/neuron-htm-comparison.png") %>">
+<img
+   alt="Figure 1: A Comparison between Biological Neurons and HTM Cells"
+   src="<%= Routes.static_path(@conn, "/images/numenta/neuron-htm-comparison.png") %>"
+>
+
 _Figure 1: A Comparison between Biological Neurons and HTM Cells. Source: [HTM paper p. 47][htm-paper]_
 
 #### Proximal Dendrites
@@ -205,16 +209,12 @@ A disadvantage of naming your layers sequentially (e. g. 1-6) is that you cannot
 
 Also how do you define a sub-layer 3A and 3B, you still have 2 to deal with. Instead of squashing the two layers together, a new one is created.
 
-<img alt="Figure 2: Hierarchical connection between columns in neocortex" src="<%= Routes.static_path(@conn, "/images/numenta/neocortex-columns-connection.png") %>">
+<img
+   alt="Figure 2: Hierarchical connection between columns in neocortex"
+   src="<%= Routes.static_path(@conn, "/images/numenta/neocortex-columns-connection.png") %>"
+>
+
 _Figure 2: Hierarchical connection between columns in neocortex. Source: [HTM paper p. 60][htm-paper]_
-
-I propose a new naming for the layers based on the function I inscribe them (as understood from the _figure 2_):
-1. layer receives a feedback from its parent, hence it's a _feedback layer_.
-2. and 3. layer is the _direct output layer_.
-4. layer receives an input from its child, forwards some of it to other layers and some of it to parent. It also goes away the further the column is to a sensory input. It's the _feedforward layer_.
-5. layer is involved in motor generation, hence it's a _action layer_. Its output also goes to [thalamus][thalamus], which then decides whether to forward the output to parent. Wikipedia claims that thalamus control alertness and sleep.
-
-What follows in the paper is an interpretation of the layers function. The description I have described above is a guess based on _figure 2_.
 
 #### Layer 4
 - useful for non-temporary patterns, like for vision
