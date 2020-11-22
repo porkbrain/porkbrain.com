@@ -7,7 +7,6 @@ defmodule PorkbrainWeb.HomeController do
 
   # Views the home page, which is a HN-like list.
   def index(conn, _) do
-    # TODO: Test what happens in production when this crashes.
     {:ok, posts} = Repo.transaction(fn() ->
       Enum.to_list(Repo.stream(from p in Post, order_by: [
         {:desc, p.inserted_at},
@@ -15,12 +14,13 @@ defmodule PorkbrainWeb.HomeController do
       ]))
     end)
 
-    render(conn, "index.html", posts: posts)
+    conn
+    |> put_resp_header("cache-control", "public, max-age=3600")
+    |> render("index.html", posts: posts)
   end
 
   def tribute(conn, _) do
     conn
-    # |> put_layout(false)
     |> assign(:page_title, "un hommage à l'artiste")
     |> render("tribute.html")
   end

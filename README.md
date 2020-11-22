@@ -18,9 +18,9 @@ docker run --rm -it \
     porkbrain-builder bash
 ```
 
-Run the deploy script. You need a pem file in the mounted volume to access the instance (replace the placeholder with instance name). TODO: .env file.
+Run the deploy script. You need a pem file in the mounted volume to access thei nstance (replace the placeholder with instance name). TODO: .env file.
 ```
-./prod.sh --pem "/ssh_keys/porkbrain-server.pem" -i "ec2-user@ec2-1-2-3-4.eu-west-1.compute.amazonaws.com"
+./prod.sh --pem "/ssh_keys/prkbrn.pem" -i "ec2-user@ec2-1-2-3-4.eu-west-1.compute.amazonaws.com"
 ```
 
 To run migrations.
@@ -29,30 +29,26 @@ docker exec bin/porkbrain rpc "Elixir.Porkbrain.ReleaseTasks.migrate"
 ```
 
 ## Running in docker
-We're using [this guide][docker-with-phoenix] to set up a testing environment in
-which our Phoenix app talks to Docker.
+We're using [this guide][docker-with-phoenix] to set up a testing environment in which our Phoenix app talks to Docker.
 
-Use `docker-compose up --abort-on-container-exit` to create the container. Tests
-can be run in the container with `docker-compose run porkbrain mix test`.
+Use `docker-compose up --abort-on-container-exit` to create the container. Tests can be run in the container with `docker-compose run porkbrain mix test`.
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## New database table
-To set up new database table, refer to [this Ecto tutorial][ecto-new-table]. For
-list of database fields refer to the [documentation here][ecto-types]. The
-primary key column named `id` is created by default.
+To set up new database table, refer to [this Ecto tutorial][ecto-new-table]. For list of database fields refer to the [documentation here][ecto-types]. The primary key column named `id` is created by default.
 
 ## Postgres
-You can list all databases with `\l`. Then connect to a database with
-`\c {db_name}`. To list database tables use `\dt`. `\d+ {table_name}` prints the
-structure of a table.
+You can list all databases with `\l`. Then connect to a database with `\c {db_name}`. To list database tables use `\dt`. `\d+ {table_name}` prints the structure of a table.
 
 To take a backup into an SQL file, use
 `pg_dump -U porkbrain -W --column-inserts porkbrain > porkbrain_dump.sql`.
 
 ## Markdown
-Markdown [engine][md-engine] is added, therefore pages can be written in MD if
-they have suffix `html.md`.
+Markdown [engine][md-engine] is added, therefore pages can be written in MD if they have suffix `html.md`.
+
+## Error page
+In the cloudfront we set up a new origin to an S3 bucket and then change the default behavior to point to the [error.html](error.html) file. This way we avoid scrapers and bots hitting the server seeking for WP vulnerabilities and alike.
 
 ## Useful references
 - [Building a JSON API with Phoenix 1.3 and Elixir][building-json-api]
