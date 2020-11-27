@@ -1,9 +1,17 @@
-#!/bin/sh
+#!/bin/bash
 # Builds the application for production.
 # This process is still very much WIP.
 
 set -e
 
+# Imports the .env file environment variables if present.
+if test -f ".env"; then
+    echo "(source .env)"
+    source ".env"
+fi
+
+instance_name="${INSTANCE_NAME}"
+pem_file_path="${PEM_FILE_PATH}"
 for key in "$@"; do
     case ${key} in
         --pem)
@@ -30,7 +38,7 @@ if [ -z "${instance_name}" ]; then
 fi
 
 if [ ! -f "${pem_file_path}" ]; then
-    echo "Path to the .pem file must be provided with --pem."
+    echo "Path to existing .pem file must be provided with --pem."
     exit 1
 fi
 
@@ -77,7 +85,7 @@ eval "${app_location}/bin/porkbrain version"
 #
 # Don't forget to change the password.
 # docker run -d --rm \
-#     -p 5432:5432 \
+#     --expose 5432 \
 #     -v pqdata:/var/lib/postgresql/data \
 #     -e POSTGRES_PASSWORD=secret \
 #     -e POSTGRES_USER=porkbrain \

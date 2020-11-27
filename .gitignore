@@ -35,3 +35,6 @@ npm-debug.log
 
 # Needed to install deps.
 rebar
+
+# To speed up deployment.
+.env

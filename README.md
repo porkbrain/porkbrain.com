@@ -6,10 +6,14 @@ Personal website.
 The deployment is still WIP.
 
 Prepare builder image.
-`docker build --tag porkbrain-builder .`
+
+```bash
+docker build --tag porkbrain-builder .
+```
 
 Start builder container. Notice the second mounted volume for ssh keys.
-```
+
+```bash
 docker run --rm -it \
     -v "${PWD}":/porkbrain \
     -v /tmp/porkbrain:/ssh_keys \
@@ -18,13 +22,15 @@ docker run --rm -it \
     porkbrain-builder bash
 ```
 
-Run the deploy script. You need a pem file in the mounted volume to access thei nstance (replace the placeholder with instance name). TODO: .env file.
-```
-./prod.sh --pem "/ssh_keys/prkbrn.pem" -i "ec2-user@ec2-1-2-3-4.eu-west-1.compute.amazonaws.com"
+Run the deploy script. You need a pem file in the mounted volume to access the instance (configure .env file or pass `--pem` and `--instance` to the following script).
+
+```bash
+./prod.sh
 ```
 
 To run migrations.
-```
+
+```bash
 docker exec bin/porkbrain rpc "Elixir.Porkbrain.ReleaseTasks.migrate"
 ```
 
@@ -43,6 +49,9 @@ You can list all databases with `\l`. Then connect to a database with `\c {db_na
 
 To take a backup into an SQL file, use
 `pg_dump -U porkbrain -W --column-inserts porkbrain > porkbrain_dump.sql`.
+
+Transfer the file from ec2 (TODO: automatic backup uploads to S3)
+`rsync -e "ssh -i prkbrn.pem" ec2-user@ec2-1-2-3-4.eu-west-1.compute.amazonaws.com:/home/ec2-user/porkbrain-backup-YYYY-MM-DD.sql .`
 
 ## Markdown
 Markdown [engine][md-engine] is added, therefore pages can be written in MD if they have suffix `html.md`.
