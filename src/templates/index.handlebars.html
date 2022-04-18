@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" type="image/gif" href="assets/favicon.ico" />
+    <meta
+      name="description"
+      content="
+        The homepage is a vanilla flavoured list which curates mostly
+        technology and mathematics related content.
+        One can find here quotes, comments, articles, videos and
+        opinions.
+    "
+    />
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="porkbrain,hacker news,technology" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>porkbrain | We are what We read</title>
+
+    <script
+      data-goatcounter="https://porkbrain.goatcounter.com/count"
+      async
+      src="//gc.zgo.at/count.js"
+    ></script>
+
+    <style>
+      /**
+       * Minimalistic layout inside a responsive container.
+       */
+
+      .main {
+        margin: auto;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .header {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+      }
+
+      .header .logo {
+        width: 207px;
+      }
+
+      .footer {
+        margin-top: 32px;
+      }
+
+      @media only screen and (min-height: 780px) {
+        .header .wrapper {
+          margin-top: -270px;
+        }
+      }
+
+      @media only screen and (min-width: 1024px) {
+        .main {
+          width: 960px;
+        }
+      }
+
+      @media only screen and (min-width: 1407px) {
+        .main {
+          width: 1344px;
+        }
+      }
+
+      /**
+       * The home page article list is vanilla. We just need to change font sizes in
+       * certain cases such as article notes or when the article is supposed to be
+       * highlighted.
+       */
+
+      .articles {
+        margin: 4rem 0;
+      }
+
+      .articles .article {
+        margin-top: 1rem;
+      }
+
+      .articles .article h3 {
+        display: inline;
+        font-size: 1rem;
+      }
+
+      .articles time {
+        color: grey;
+
+        display: block;
+        font-size: 0.75rem;
+        margin-top: 2.5rem;
+      }
+
+      .articles .article .note {
+        font-size: 0.75rem;
+      }
+
+      /**
+       * Since we're using markdown for descriptions, we remove the ability of the
+       * first paragraph to make a new line.
+       */
+
+      .articles .article .note p:first-child {
+        display: inline;
+      }
+
+      @media only screen and (min-width: 1024px) {
+        .articles .article time {
+          display: inline-block;
+        }
+      }
+
+      /**
+       * Typography
+       * 
+       */
+
+      body {
+        color: #444;
+        line-height: 1.4;
+      }
+
+      .title {
+        font-size: 2.25rem;
+        line-height: 0.64;
+      }
+
+      .hidden {
+        visibility: hidden;
+        color: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="main">
+      <header class="header">
+        <div class="wrapper">
+          <p style="font-size: 12.5px; margin: 0">porkbrain</p>
+          <p style="font-size: 12.5px; margin: 0">
+            <span class="hidden">porkbrain</span> поркбрайн
+          </p>
+          <p style="font-size: 12.5px; margin-top: 0">
+            <span class="hidden">porkbrain поркбрайн</span> πορκβραιν
+          </p>
+
+          <img
+            class="logo"
+            alt="porkbrain logo"
+            src="assets/porkbrain_200x200.jpeg"
+          />
+
+          <h1 class="title">
+            &popf;&oopf;&ropf;&kopf;&bopf;&ropf;&aopf;&iopf;&nopf;<br />
+            &oopf;<span class="hidden"
+              >&ropf;&kopf;&bopf;&ropf;&aopf;&iopf;&nopf;</span
+            >&popf;<br />
+            &ropf;&kopf;&bopf;&ropf;&aopf;&iopf;&nopf;&popf;&oopf;<br />
+            &kopf;&bopf;<span class="hidden"
+              >&ropf;&aopf;&iopf;&nopf;&popf;</span
+            >&oopf;&ropf;<br />
+            &bopf;&ropf;&aopf;&iopf;&nopf;&popf;&oopf;&ropf;&kopf;<br />
+            &ropf;&aopf;&iopf;&nopf;&popf;&oopf;&ropf;&kopf;<br />
+            <span class="hidden">&aopf;</span>&iopf;&nopf;&popf;&oopf;<br />
+            &iopf;&nopf;&popf;<br />
+            &nopf;
+          </h1>
+        </div>
+      </header>
+
+      <section>
+        <a href="https://manyagents.ai">manyagents</a> &times;
+        <a href="https://github.com/bausano">github</a> &times;
+        <a href="https://sucklesshn.porkbrain.com">suckless hn</a>
+      </section>
+
+      <section class="articles">
+        {{#each grouped_posts}}
+        <time>{{date}}</time>
+
+        {{#each posts}}
+        <article class="article">
+
+          {{#if url}}
+          <a class="link" href="{{url}}"><h3 class="heading">{{heading}}</h3></a>
+          {{else}}
+          <h3 class="heading">
+            {{heading}}
+          </h3>
+          {{/if}}
+
+          <span class="note">{{{md_to_html description}}}</span>
+        </article>
+        {{/each}}
+        {{/each}}
+      </section>
+    </main>
+  </body>
+
+  <script>
+    const images = [
+      "assets/porkbrain_200x200.jpeg",
+      "assets/robot_200x200.jpeg",
+      "assets/sliced_200x200.jpeg",
+    ];
+
+    const logo = document.querySelector(".logo");
+
+    let index = 0;
+    function flickImage() {
+      index = index === images.length - 1 ? 0 : index + 1;
+      logo.src = images[index];
+    }
+
+    logo.addEventListener("mouseenter", flickImage);
+    logo.addEventListener("click", flickImage);
+  </script>
+</html>
